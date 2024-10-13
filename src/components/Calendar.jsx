@@ -48,7 +48,7 @@ const Calendar = () => {
   console.log(nextMonthDays);
 
   return (
-    <div className="absolute top-16 mt-3 flex w-full justify-between rounded-3xl bg-white px-5 shadow-2xl">
+    <div className="absolute top-16 mt-3 flex w-full justify-between rounded-3xl border-gray-400 bg-white px-5 shadow-2xl">
       <div className="w-[45%]">
         <h2 className="text-center text-xl">{getCurrentMonthYear()}</h2>
         <div className="grid grid-cols-7 gap-2">
