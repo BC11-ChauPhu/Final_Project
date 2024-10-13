@@ -50,7 +50,9 @@ const Calendar = () => {
   return (
     <div className="absolute top-16 mt-3 flex w-full justify-between rounded-3xl border-gray-400 bg-white px-5 shadow-2xl">
       <div className="w-[45%]">
-        <h2 className="text-center text-xl">{getCurrentMonthYear()}</h2>
+        <h2 className="text-center text-xl font-bold">
+          {getCurrentMonthYear()}
+        </h2>
         <div className="grid grid-cols-7 gap-2">
           {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
             <div key={day}>{day}</div>
