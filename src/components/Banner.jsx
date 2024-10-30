@@ -93,7 +93,7 @@ const Banner = () => {
         {/* MEDIUM SEARCHBAR */}
         <div className="borde relative mx-auto mt-20 hidden h-[66px] md:block lg:w-[70%]">
           {/* SEARCH FORM */}
-          <div className="dropshadow-xl relative flex rounded-full border border-gray-300">
+          <div className="dropshadow-xl relative flex rounded-full border border-gray-300 shadow-lg">
             <div className="w-1/3 border-brand">
               <div className="bannerSeachLocale flex h-full md:w-full">
                 <label
@@ -120,18 +120,9 @@ const Banner = () => {
               <div className="h-8 self-center border-r border-r-gray-300"></div>
             </div>
             <div className="flex w-1/3">
-              <div className="flex h-full w-1/2">
+              <div className="flex h-full w-full">
                 <div className="w-full bg-white px-6 py-4 transition-all duration-500 hover:bg-gray-200">
                   <div className="text-xs font-semibold">Check in</div>
-                  <div className="text-sm text-gray-400">Add dates</div>
-                </div>
-              </div>
-              <div className="flex items-center bg-white">
-                <div className="h-8 border-r border-r-gray-300"></div>
-              </div>
-              <div className="flex h-full w-1/2">
-                <div className="w-full bg-white px-6 py-4 transition-all duration-500 hover:bg-gray-200">
-                  <div className="text-xs font-semibold">Check out</div>
                   <div className="text-sm text-gray-400">Add dates</div>
                 </div>
               </div>

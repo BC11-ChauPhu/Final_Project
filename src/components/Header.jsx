@@ -35,7 +35,7 @@ const Header = () => {
     <>
       <nav
         id="header"
-        className="fixed left-0 top-0 z-[1] w-screen bg-transparent px-6 py-1 transition-all duration-500 md:border md:border-b-gray-300 md:bg-white"
+        className="fixed left-0 top-0 z-[1] w-screen bg-transparent px-6 py-1 transition-all duration-500 md:bg-white"
       >
         <div className="container relative sm:max-w-full md:mx-auto md:max-w-7xl">
           <div className="flex items-center justify-between">
