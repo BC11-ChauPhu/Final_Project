@@ -7,7 +7,7 @@ import img4 from "../assets/img/shih-tzu-8751508_640.jpg";
 const StaticLocale = () => {
   return (
     <section id="staticLocale">
-      <div className="container mx-auto my-10 px-6">
+      <div className="mx-auto my-10 px-6 xl:px-20">
         <h2 className="text-center text-3xl font-bold md:text-left">
           Stay Anywhere
         </h2>

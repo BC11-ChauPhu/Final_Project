@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { http } from "../service/config";
-import bannerBg from "../assets/img/banner.png";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import SearchResultList from "./SearchResultList";
@@ -15,6 +14,7 @@ const Banner = () => {
   const [filteredList, setfilteredList] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState({});
+  const [showCalendar, setShowCalendar] = useState(false);
   const navigate = useNavigate();
 
   const fetchData = (value) =>
@@ -50,15 +50,11 @@ const Banner = () => {
     setInput(value), fetchData(value), handleShowResults(value)
   );
 
-  // useEffect(() => {
-  //   console.log(selectedLocation);
-  // }, [selectedLocation]);
-  //
   return (
-    <section id="banner" className="block h-[400px]">
-      <div className="container relative h-96 max-w-full p-6 md:mx-auto md:max-w-7xl">
+    <section id="banner" className="m-4 mb-0 block">
+      <div className="relative max-w-full pb-6 md:mx-auto md:mt-16 md:max-w-7xl">
         {/* SMALL SEARCHBAR */}
-        <div className="mx-auto mt-20 h-14 max-w-md rounded-full bg-white shadow-xl transition-all duration-500 hover:bg-gray-200 md:hidden">
+        <div className="mx-auto h-14 max-w-md rounded-full border border-gray-300 bg-white shadow-xl transition-all duration-500 hover:bg-gray-200 md:hidden">
           <div
             className="grid h-full"
             onClick={() => {
@@ -91,14 +87,14 @@ const Banner = () => {
           </div>
         </div>
         {/* MEDIUM SEARCHBAR */}
-        <div className="borde relative mx-auto mt-20 hidden h-[66px] md:block lg:w-[70%]">
+        <div className="borde relative mx-auto hidden h-[66px] md:block lg:w-[70%]">
           {/* SEARCH FORM */}
           <div className="dropshadow-xl relative flex rounded-full border border-gray-300 shadow-lg">
-            <div className="w-1/3 border-brand">
+            <div className="w-1/3">
               <div className="bannerSeachLocale flex h-full md:w-full">
                 <label
                   htmlFor=""
-                  className="rounded-bl-full rounded-tl-full border-black bg-white px-8 py-4 transition-all duration-500 hover:bg-gray-200 md:w-full"
+                  className="rounded-full border-black bg-white px-8 py-4 transition-all duration-500 hover:bg-gray-200 md:w-full"
                 >
                   <div className="flex w-full flex-col items-center justify-start">
                     <div className="w-full text-left text-xs font-semibold">
@@ -117,11 +113,17 @@ const Banner = () => {
               </div>
             </div>
             <div className="flex items-center bg-white">
-              <div className="h-8 self-center border-r border-r-gray-300"></div>
+              <div className="h-8 border-r border-r-gray-300"></div>
             </div>
-            <div className="flex w-1/3">
+            <div
+              className="flex w-1/3"
+              onClick={() => {
+                setShowCalendar((prev) => !prev);
+                console.log(showCalendar);
+              }}
+            >
               <div className="flex h-full w-full">
-                <div className="w-full bg-white px-6 py-4 transition-all duration-500 hover:bg-gray-200">
+                <div className="w-full rounded-full bg-white px-6 py-4 transition-all duration-500 hover:bg-gray-200">
                   <div className="text-xs font-semibold">Check in</div>
                   <div className="text-sm text-gray-400">Add dates</div>
                 </div>
@@ -130,7 +132,7 @@ const Banner = () => {
             <div className="flex items-center bg-white">
               <div className="h-8 border-r border-r-gray-300"></div>
             </div>
-            <div className="flex w-1/3 items-center justify-between rounded-br-full rounded-tr-full bg-white">
+            <div className="flex w-1/3 items-center justify-between rounded-full rounded-br-full rounded-tr-full bg-white hover:bg-gray-200">
               <div>
                 <div className="w-full">
                   <div className="px-6 py-4">
@@ -162,7 +164,7 @@ const Banner = () => {
               />
             )}
             {/* CALENDAR */}
-            <Calendar />
+            {showCalendar && <Calendar />}
           </div>
         </div>
       </div>

@@ -6,5 +6,9 @@
         background: transparent;
       }
     }
+    &.active {
+      color: white;
+      background: black;
+    }
   }
 }

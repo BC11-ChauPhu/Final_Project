@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FaAirbnb } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../service/AuthContext.jsx";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa";
 import useScrollToTop from "../service/useScrollToTop.jsx";
 
 const Header = () => {
@@ -35,20 +38,21 @@ const Header = () => {
     <>
       <nav
         id="header"
-        className="fixed left-0 top-0 z-[1] w-screen bg-transparent px-6 py-1 transition-all duration-500 md:bg-white"
+        className="fixed bottom-0 left-0 z-[1] w-screen bg-white px-6 py-2 transition-all duration-500 md:bottom-auto md:top-0 xl:px-20"
       >
-        <div className="container relative sm:max-w-full md:mx-auto md:max-w-7xl">
-          <div className="flex items-center justify-between">
+        <div className="relative sm:max-w-full md:mx-auto">
+          <div className="flex items-center justify-center md:justify-between">
+            {/* LOGO */}
             <div
-              className="flex cursor-pointer items-center py-2 text-[#FF385C]"
+              className="hidden cursor-pointer items-center py-2 text-3xl text-brand md:flex"
               onClick={() => navigate(`/`)}
             >
-              <FaAirbnb className="text-4xl" />
-              <span className="font-bold">airbnb</span>
+              <FaAirbnb />
+              <span className="text-2xl font-bold">airbnb</span>
             </div>
             <div className="hidden space-x-6 text-gray-600 md:flex">
               <NavLink
-                className="transition-all duration-500 hover:text-black"
+                className="links active transition-all duration-500 hover:text-black"
                 to="/"
               >
                 {" "}
@@ -60,13 +64,8 @@ const Header = () => {
               >
                 Experiences
               </NavLink>
-              <NavLink
-                className="transition-all duration-500 hover:text-black"
-                to="/"
-              >
-                Online Experiences
-              </NavLink>
             </div>
+            {/* MEDIUM LOG IN BUTTON */}
             <div className="relative">
               <button
                 className="text-dark hidden items-center justify-between space-x-3 rounded-full border border-gray-300 bg-white px-2 py-2 font-semibold drop-shadow-lg transition-all duration-500 hover:text-gray-500 hover:drop-shadow-2xl md:flex"
@@ -103,46 +102,27 @@ const Header = () => {
                 )}
               </div>
             </div>
-            {/* SMALL SCREEN MENU */}
-            <div className="flex items-center md:hidden">
-              <button
-                id="menu-btn"
-                className="hamburger block focus:outline-none md:hidden"
-                onClick={() => {
-                  document.querySelector("#menu-btn").classList.toggle("open");
-                  document.querySelector("#menu").classList.toggle("flex");
-                  document.querySelector("#menu").classList.toggle("hidden");
-                }}
-              >
-                <span className="hamburger-top"></span>
-                <span className="hamburger-middle"></span>
-                <span className="hamburger-bottom"></span>
-              </button>
+            {/* SMALL HEADER BUTTONS */}
+            <div className="flex items-center gap-6 text-gray-400 md:hidden">
+              <div className="sHeaderItem active grid">
+                <p className="grid justify-center">
+                  <FaMagnifyingGlass className="text-2xl" />
+                </p>
+                <p className="text-xs">Explore</p>
+              </div>
+              <div className="sHeaderItem grid">
+                <p className="grid justify-center text-2xl">
+                  <FaRegHeart />
+                </p>
+                <p className="text-xs">Wishlist</p>
+              </div>
+              <div className="sHeaderItem grid">
+                <p className="grid justify-center">
+                  <FaRegUserCircle className="text-2xl" />
+                </p>
+                <p className="text-xs">Log in</p>
+              </div>
             </div>
-          </div>
-        </div>
-        {/* SMALL SCREEN POPUP */}
-        <div className="md:hidden">
-          <div
-            id="menu"
-            className="absolute left-6 right-6 hidden w-auto flex-col items-center space-y-6 self-center rounded-l border border-gray-300 bg-white py-8 font-bold text-black drop-shadow-md transition-all duration-300 md:mt-10 md:hidden md:self-end"
-          >
-            <div className="items-centers flex w-full flex-col space-y-6 border-b border-gray-300 pb-6 text-center">
-              {isAuthenciated ? (
-                <>
-                  <button onClick={goToUser}>Profile</button>
-                  <button onClick={logout}>Logout</button>
-                </>
-              ) : (
-                <>
-                  <NavLink to="/sign-in">Sign In</NavLink>
-                  <NavLink to="/register">Register</NavLink>
-                </>
-              )}
-            </div>
-            <NavLink to="/">Locations</NavLink>
-            <NavLink to="/">Experiences</NavLink>
-            <NavLink to="/">Online Experiences</NavLink>
           </div>
         </div>
       </nav>

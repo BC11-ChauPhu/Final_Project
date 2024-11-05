@@ -11,9 +11,10 @@ const NearbyLocation = () => {
   const [locations, setLocation] = useState([]);
   useEffect(() => {
     http
-      .get("/api/vi-tri/phan-trang-tim-kiem?pageIndex=1&pageSize=8")
+      .get("/api/vi-tri")
       .then((res) => {
-        setLocation(res.data.content.data);
+        console.log(res);
+        setLocation(res.data.content);
       })
       .catch((err) => {
         console.log(err);
@@ -22,17 +23,12 @@ const NearbyLocation = () => {
 
   return (
     <section id="nearbyLocation" className="block">
-      <div className="container mx-auto mt-10 px-6 lg:mb-10">
-        <div className="mb-10">
-          <h1 className="text-center text-3xl font-bold md:text-left">
-            Discover nearby destinations
-          </h1>
-        </div>
-        <div className="grid space-y-6 md:grid-cols-2 md:gap-6 md:gap-y-10 md:space-y-0 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mx-auto px-6 md:mt-4 lg:mb-10 xl:px-20">
+        <div className="grid space-y-6 md:grid-cols-2 md:gap-6 md:gap-y-10 md:space-y-0 lg:grid-cols-3 xl:grid-cols-6">
           {locations?.map((item, index) => {
             return (
               <div key={index} className="flex flex-col">
-                <div className="relative md:h-96 lg:h-full">
+                <div className="relative md:h-64 lg:h-full">
                   <div
                     className="h-full"
                     onClick={() => {
@@ -40,7 +36,7 @@ const NearbyLocation = () => {
                     }}
                   >
                     <img
-                      className="rounded-lg md:h-full md:w-full"
+                      className="block h-full w-full rounded-lg object-cover"
                       src={item.hinhAnh}
                       alt=""
                     />

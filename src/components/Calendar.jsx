@@ -8,6 +8,9 @@ const Calendar = () => {
   const today = new Date();
   nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
 
+  const startDate = useState();
+  const endDate = useState();
+
   const getCurrentMonthYear = () => {
     const month = currentDate.toLocaleDateString("default", { month: "long" });
     const year = currentDate.getFullYear();
@@ -72,6 +75,8 @@ const Calendar = () => {
     );
   };
 
+  const onDateSelect = (e) => {};
+
   useEffect(() => {
     setPrevButton(!isPreviousButtonDisabled());
   }, [currentDate]);
@@ -98,6 +103,7 @@ const Calendar = () => {
             <div
               key={index}
               className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""}`}
+              onClick={() => onDateSelect(e)}
             >
               {day}
             </div>
