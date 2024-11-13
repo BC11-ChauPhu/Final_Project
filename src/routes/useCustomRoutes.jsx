@@ -10,12 +10,22 @@ import LocationDetailPage from "../pages/LocationDetailPage";
 import UserTemplate from "../templates/UserTemplate";
 import UserPage from "../pages/UserPage";
 
-const useCustomRoutes = () => {
+const useCustomRoutes = (showPopUpSearch, togglePopUp) => {
   const myRoutes = useRoutes([
     {
       path: "",
-      element: <HomeTemplate />,
-      children: [{ index: true, element: <HomePage /> }],
+      element: <HomeTemplate showPopUpSearch={showPopUpSearch} />,
+      children: [
+        {
+          index: true,
+          element: (
+            <HomePage
+              showPopUpSearch={showPopUpSearch}
+              togglePopUp={togglePopUp}
+            />
+          ),
+        },
+      ],
     },
     {
       path: "location",

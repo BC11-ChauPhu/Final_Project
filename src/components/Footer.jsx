@@ -5,9 +5,9 @@ import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <section className="border-t border-t-gray-300 text-black" id="footer">
-      <div className="m-auto xl:px-20">
-        <div className="grid gap-y-6 p-6 md:grid-cols-4 md:gap-x-4">
+    <section className="bg-gray-100 text-black" id="footer">
+      <div className="container m-auto xl:px-20">
+        <div className="grid gap-y-6 py-6 md:grid-cols-4 md:gap-x-4">
           <div className="">
             <h2 className="mb-2 font-semibold">Introduction</h2>{" "}
             <ul className="flex flex-col space-y-2">

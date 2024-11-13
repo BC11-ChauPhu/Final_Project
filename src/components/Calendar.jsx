@@ -75,68 +75,70 @@ const Calendar = () => {
     );
   };
 
-  const onDateSelect = (e) => {};
+  const onDateSelect = () => {};
 
   useEffect(() => {
     setPrevButton(!isPreviousButtonDisabled());
   }, [currentDate]);
 
   return (
-    <div className="calendar absolute top-16 z-10 mt-3 flex w-full justify-between rounded-3xl border-gray-400 bg-white px-9 py-4 shadow-2xl">
-      <div className="w-[49%] px-6">
-        <h2 className="relative flex items-center justify-around pb-8 pt-6 text-center font-semibold">
-          {getCurrentMonthYear()}
-          {prevButton && (
-            <FaChevronLeft
-              className="absolute left-0"
-              onClick={goToPreviousMonth}
-            />
-          )}
-        </h2>
-        <div className="grid grid-cols-7 gap-1 text-center text-sm">
-          {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, index) => (
-            <div key={index} className="text-gray-500">
-              {day}
-            </div>
-          ))}
-          {currentMonthDays.map((day, index) => (
-            <div
-              key={index}
-              className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""}`}
-              onClick={() => onDateSelect(e)}
-            >
-              {day}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="w-[49%] px-6 transition-all duration-500">
-        <div className="relative">
-          <h2 className="mb-8 mt-6 flex items-center justify-around text-center font-semibold">
-            {getNextMonthYear()}
-            <FaChevronRight
-              className="absolute right-0"
-              onClick={goToNextMonth}
-            />
+    <>
+      <div className="calendar top-16 z-10 mx-4 mt-3 grid max-h-[400px] justify-between overflow-y-scroll rounded-3xl border-gray-400 bg-white p-0 py-4 shadow-2xl md:absolute md:flex md:w-full md:px-9">
+        <div className="w-full px-6 md:w-[49%]">
+          <h2 className="relative flex items-center justify-around pb-8 pt-6 text-center font-semibold">
+            {getCurrentMonthYear()}
+            {prevButton && (
+              <FaChevronLeft
+                className="absolute left-0"
+                onClick={goToPreviousMonth}
+              />
+            )}
           </h2>
+          <div className="grid grid-cols-7 gap-1 text-center text-sm">
+            {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, index) => (
+              <div key={index} className="text-gray-500">
+                {day}
+              </div>
+            ))}
+            {currentMonthDays.map((day, index) => (
+              <div
+                key={index}
+                className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""}`}
+                onClick={() => onDateSelect(e)}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-7 gap-1 text-center text-sm">
-          {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-            <div key={day} className="text-gray-500">
-              {day}
-            </div>
-          ))}
-          {nextMonthDays.map((day, index) => (
-            <div
-              key={index}
-              className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""}`}
-            >
-              {day}
-            </div>
-          ))}
+        <div className="w-full px-6 transition-all duration-500 md:w-[49%]">
+          <div className="relative">
+            <h2 className="mb-8 mt-6 flex items-center justify-around text-center font-semibold">
+              {getNextMonthYear()}
+              <FaChevronRight
+                className="absolute right-0"
+                onClick={goToNextMonth}
+              />
+            </h2>
+          </div>
+          <div className="grid grid-cols-7 gap-1 text-center text-sm">
+            {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
+              <div key={day} className="text-gray-500">
+                {day}
+              </div>
+            ))}
+            {nextMonthDays.map((day, index) => (
+              <div
+                key={index}
+                className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""}`}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

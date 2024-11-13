@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../service/AuthContext.jsx";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
+import { CiGlobe } from "react-icons/ci";
 import useScrollToTop from "../service/useScrollToTop.jsx";
 
 const Header = () => {
@@ -38,19 +39,21 @@ const Header = () => {
     <>
       <nav
         id="header"
-        className="fixed bottom-0 left-0 z-[1] w-screen bg-white px-6 py-2 transition-all duration-500 md:bottom-auto md:top-0 xl:px-20"
+        className="fixed bottom-0 left-0 z-[1] flex h-20 w-full items-center bg-white px-6 py-2 transition-all duration-500 md:bottom-auto md:top-0 xl:px-20"
       >
-        <div className="relative sm:max-w-full md:mx-auto">
-          <div className="flex items-center justify-center md:justify-between">
+        <div className="relative w-full">
+          {/* MEDIUM HEADER */}
+          <div className="flex items-center md:justify-between">
             {/* LOGO */}
             <div
+              id="headerLogo"
               className="hidden cursor-pointer items-center py-2 text-3xl text-brand md:flex"
               onClick={() => navigate(`/`)}
             >
               <FaAirbnb />
               <span className="text-2xl font-bold">airbnb</span>
             </div>
-            <div className="hidden space-x-6 text-gray-600 md:flex">
+            <div className="hidden justify-center gap-4 text-gray-600 md:flex">
               <NavLink
                 className="links active transition-all duration-500 hover:text-black"
                 to="/"
@@ -65,8 +68,16 @@ const Header = () => {
                 Experiences
               </NavLink>
             </div>
-            {/* MEDIUM LOG IN BUTTON */}
-            <div className="relative">
+            <div
+              id="headerRight"
+              className="relative flex items-center justify-end gap-4"
+            >
+              <p className="hidden text-sm font-semibold md:block">
+                Airbnb your home
+              </p>
+              <span className="hidden text-xl font-semibold md:block">
+                <CiGlobe />
+              </span>
               <button
                 className="text-dark hidden items-center justify-between space-x-3 rounded-full border border-gray-300 bg-white px-2 py-2 font-semibold drop-shadow-lg transition-all duration-500 hover:text-gray-500 hover:drop-shadow-2xl md:flex"
                 onClick={() => {
@@ -79,7 +90,7 @@ const Header = () => {
               </button>
               <div
                 id="mdPopUp"
-                className="absolute right-0 mt-2 hidden rounded-lg bg-white py-2 shadow-xl"
+                className="absolute right-0 mt-40 hidden rounded-lg bg-white py-2"
               >
                 {isAuthenciated ? (
                   <>
@@ -102,26 +113,26 @@ const Header = () => {
                 )}
               </div>
             </div>
-            {/* SMALL HEADER BUTTONS */}
-            <div className="flex items-center gap-6 text-gray-400 md:hidden">
-              <div className="sHeaderItem active grid">
-                <p className="grid justify-center">
-                  <FaMagnifyingGlass className="text-2xl" />
-                </p>
-                <p className="text-xs">Explore</p>
-              </div>
-              <div className="sHeaderItem grid">
-                <p className="grid justify-center text-2xl">
-                  <FaRegHeart />
-                </p>
-                <p className="text-xs">Wishlist</p>
-              </div>
-              <div className="sHeaderItem grid">
-                <p className="grid justify-center">
-                  <FaRegUserCircle className="text-2xl" />
-                </p>
-                <p className="text-xs">Log in</p>
-              </div>
+          </div>
+          {/* SMALL HEADER */}
+          <div className="flex items-center justify-center gap-6 text-gray-400 md:hidden">
+            <div className="sHeaderItem active grid">
+              <p className="grid justify-center">
+                <FaMagnifyingGlass className="text-2xl" />
+              </p>
+              <p className="text-xs">Explore</p>
+            </div>
+            <div className="sHeaderItem grid">
+              <p className="grid justify-center text-2xl">
+                <FaRegHeart />
+              </p>
+              <p className="text-xs">Wishlist</p>
+            </div>
+            <div className="sHeaderItem grid">
+              <p className="grid justify-center">
+                <FaRegUserCircle className="text-2xl" />
+              </p>
+              <p className="text-xs">Log in</p>
             </div>
           </div>
         </div>

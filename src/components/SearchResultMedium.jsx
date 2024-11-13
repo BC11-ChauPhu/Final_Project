@@ -5,7 +5,7 @@ const SearchResultMedium = ({ filteredList, onLocationSelect }) => {
   return (
     <div
       id="searchResultMedium"
-      className="absolute left-0 top-16 mt-3 rounded-[32px] bg-white px-4 py-6 drop-shadow-xl"
+      className="absolute left-0 top-16 z-10 mt-3 rounded-[32px] bg-white px-4 py-6 drop-shadow-xl"
     >
       {filteredList?.length > 0 ? (
         filteredList?.map((item, index) => (

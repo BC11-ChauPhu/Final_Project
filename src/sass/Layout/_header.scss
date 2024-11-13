@@ -1,4 +1,12 @@
 #header {
+  #headerLogo {
+    flex: 1 0 140px;
+  }
+
+  #headerRight {
+    flex: 1 0 140px;
+  }
+
   .links {
     &.active {
       color: black;
@@ -8,8 +16,13 @@
 
   &.active {
     background: white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
+
+  #mdPopUp {
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.2);
+  }
+
   .sHeaderItem {
     &.active {
       color: $brand-color;

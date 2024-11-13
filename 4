@@ -1,0 +1,37 @@
+import React from "react";
+import img1 from "../assets/img/House.jpg";
+import img2 from "../assets/img/Exotic'.jpg";
+import img3 from "../assets/img/Farm.jpg";
+import img4 from "../assets/img/Pet.jpg";
+
+const StaticLocale = () => {
+  return (
+    <section id="staticLocale">
+      <div className="mx-auto my-10 px-6 xl:px-20">
+        <h2 className="text-center text-3xl font-bold md:text-left">
+          Stay Anywhere
+        </h2>
+        <div className="mt-3 grid gap-y-6 text-center text-2xl font-semibold lg:grid-cols-2 lg:gap-x-9 lg:text-left lg:text-xl xl:grid-cols-4">
+          <div className="flex h-96 flex-col space-y-3">
+            <img src={img1} alt="" className="h-full rounded-lg object-cover" />
+            <span className="p-6">Whole House</span>
+          </div>
+          <div className="flex h-96 flex-col space-y-3">
+            <img src={img2} alt="" className="h-full rounded-lg object-cover" />
+            <span>Exotic Location</span>
+          </div>
+          <div className="flex h-96 flex-col space-y-3">
+            <img src={img3} alt="" className="h-full rounded-lg object-cover" />
+            <span>Nature Scenery</span>
+          </div>
+          <div className="flex h-96 flex-col space-y-3">
+            <img src={img4} alt="" className="h-full rounded-lg object-cover" />
+            <span>Pets Welcomed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StaticLocale;

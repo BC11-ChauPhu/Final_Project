@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { http } from "../service/config";
 import { IoIosStar } from "react-icons/io";
-import { FaHeart } from "react-icons/fa6";
+import { PiHeartDuotone } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import useScrollToTop from "../service/useScrollToTop";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
 
 const NearbyLocation = () => {
   useScrollToTop();
@@ -22,33 +27,162 @@ const NearbyLocation = () => {
   }, []);
 
   return (
-    <section id="nearbyLocation" className="block">
+    <section id="nearbyLocation" className="block border border-t-gray-200">
       <div className="mx-auto px-6 md:mt-4 lg:mb-10 xl:px-20">
-        <div className="grid space-y-6 md:grid-cols-2 md:gap-6 md:gap-y-10 md:space-y-0 lg:grid-cols-3 xl:grid-cols-6">
+        <h2 className="mb-3 text-center text-3xl font-bold md:text-left">
+          Popular locations
+        </h2>
+
+        <div className="grid space-y-6 xs:grid-cols-1 md:grid-cols-2 md:gap-6 md:gap-y-10 md:space-y-0 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6">
           {locations?.map((item, index) => {
             return (
-              <div key={index} className="flex flex-col">
-                <div className="relative md:h-64 lg:h-full">
-                  <div
-                    className="h-full"
-                    onClick={() => {
-                      navigate(`/location/selectedLocation/${item.id}`);
-                    }}
-                  >
-                    <img
-                      className="block h-full w-full rounded-lg object-cover"
-                      src={item.hinhAnh}
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <div className="absolute right-3 top-3">
-                      <button className="rounded-lg bg-white/80 p-3 transition-all duration-500 hover:bg-white">
-                        <FaHeart className="block h-6 w-6 text-brand" />
-                      </button>
+              <div key={index} className="locationItem flex flex-col">
+                <Swiper
+                  navigation={true}
+                  pagination={true}
+                  modules={[Pagination, Navigation]}
+                >
+                  <SwiperSlide>
+                    <div className="relative md:h-80 lg:h-64">
+                      <div
+                        className="h-full"
+                        onClick={() => {
+                          navigate(`/location/selectedLocation/${item.id}`);
+                        }}
+                      >
+                        <img
+                          className="block h-full w-full rounded-lg object-cover"
+                          src={item.hinhAnh}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <div className="absolute right-3 top-3">
+                          <button>
+                            <PiHeartDuotone className="block h-6 w-6 text-white hover:scale-110" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="absolute left-3 top-3">
+                        <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                          Guest favorite
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="relative md:h-80 lg:h-64">
+                      <div
+                        className="h-full"
+                        onClick={() => {
+                          navigate(`/location/selectedLocation/${item.id}`);
+                        }}
+                      >
+                        <img
+                          className="block h-full w-full rounded-lg object-cover"
+                          src={item.hinhAnh}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <div className="absolute right-3 top-3">
+                          <button>
+                            <PiHeartDuotone className="block h-6 w-6 text-white" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="absolute left-3 top-3">
+                        <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                          Guest favorite
+                        </span>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="relative md:h-80 lg:h-64">
+                      <div
+                        className="h-full"
+                        onClick={() => {
+                          navigate(`/location/selectedLocation/${item.id}`);
+                        }}
+                      >
+                        <img
+                          className="block h-full w-full rounded-lg object-cover"
+                          src={item.hinhAnh}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <div className="absolute right-3 top-3">
+                          <button>
+                            <PiHeartDuotone className="block h-6 w-6 text-white" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="absolute left-3 top-3">
+                        <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                          Guest favorite
+                        </span>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="relative md:h-80 lg:h-64">
+                      <div
+                        className="h-full"
+                        onClick={() => {
+                          navigate(`/location/selectedLocation/${item.id}`);
+                        }}
+                      >
+                        <img
+                          className="block h-full w-full rounded-lg object-cover"
+                          src={item.hinhAnh}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <div className="absolute right-3 top-3">
+                          <button>
+                            <PiHeartDuotone className="block h-6 w-6 text-white" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="absolute left-3 top-3">
+                        <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                          Guest favorite
+                        </span>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="relative md:h-80 lg:h-64">
+                      <div
+                        className="h-full"
+                        onClick={() => {
+                          navigate(`/location/selectedLocation/${item.id}`);
+                        }}
+                      >
+                        <img
+                          className="block h-full w-full rounded-lg object-cover"
+                          src={item.hinhAnh}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <div className="absolute right-3 top-3">
+                          <button>
+                            <PiHeartDuotone className="block h-6 w-6 text-white" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="absolute left-3 top-3">
+                        <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                          Guest favorite
+                        </span>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
                 <div className="mt-2 grid grid-cols-[87%_13%] items-start text-left text-sm">
                   <div>
                     <p className="font-semibold">
