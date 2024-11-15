@@ -1,4 +1,6 @@
 #header {
+  height: $header;
+
   #headerLogo {
     flex: 1 0 140px;
   }
@@ -17,6 +19,7 @@
   &.active {
     background: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 14px 11px 12px 0px rgba(0, 0, 0, 0.2);
   }
 
   #mdPopUp {

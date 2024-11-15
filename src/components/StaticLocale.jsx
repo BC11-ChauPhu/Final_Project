@@ -12,7 +12,7 @@ const StaticLocale = () => {
           Stay anywhere
         </h2>
         <div className="mt-6 grid gap-y-6 text-center text-2xl font-semibold lg:grid-cols-2 lg:gap-x-9 lg:text-left lg:text-xl xl:grid-cols-4">
-          <div className="flex flex-col hover:scale-105 hover:shadow-2xl">
+          <div className="flex flex-col transition-all duration-300 hover:scale-105 hover:shadow-2xl">
             <div className="h-96">
               <img
                 src={img1}
@@ -24,7 +24,7 @@ const StaticLocale = () => {
               Whole house
             </p>
           </div>
-          <div className="flex flex-col hover:scale-105 hover:shadow-2xl">
+          <div className="flex flex-col transition-all duration-300 hover:scale-105 hover:shadow-2xl">
             <div className="h-96">
               <img
                 src={img2}
@@ -36,7 +36,7 @@ const StaticLocale = () => {
               Exotic locations
             </p>
           </div>
-          <div className="flex flex-col hover:scale-105 hover:shadow-2xl">
+          <div className="flex flex-col transition-all duration-300 hover:scale-105 hover:shadow-2xl">
             <div className="h-96">
               <img
                 src={img3}
@@ -48,7 +48,7 @@ const StaticLocale = () => {
               Farm and nature
             </p>
           </div>
-          <div className="flex flex-col hover:scale-105 hover:shadow-2xl">
+          <div className="flex flex-col transition-all duration-300 hover:scale-105 hover:shadow-2xl">
             <div className="h-96">
               <img
                 src={img4}

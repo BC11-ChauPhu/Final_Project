@@ -83,7 +83,7 @@ const Calendar = () => {
 
   return (
     <>
-      <div className="calendar top-16 z-10 mx-4 mt-3 grid max-h-[400px] justify-between overflow-y-scroll rounded-3xl border-gray-400 bg-white p-0 py-4 shadow-2xl md:absolute md:flex md:w-full md:px-9">
+      <div className="calendar top-16 z-10 mx-4 mt-3 grid max-h-[400px] justify-between overflow-y-scroll rounded-3xl border-gray-400 bg-white p-0 py-4 shadow-2xl md:absolute md:mx-0 md:flex md:w-full md:px-9">
         <div className="w-full px-6 md:w-[49%]">
           <h2 className="relative flex items-center justify-around pb-8 pt-6 text-center font-semibold">
             {getCurrentMonthYear()}

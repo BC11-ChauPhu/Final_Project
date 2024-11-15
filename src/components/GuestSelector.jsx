@@ -16,13 +16,16 @@ const GuestSelector = () => {
   };
 
   return (
-    <div className="mx-4 mt-4 flex items-center justify-between rounded-2xl border border-gray-300 p-4 shadow-lg">
+    <div
+      className="top-20 mx-4 mt-4 flex items-center justify-between rounded-2xl border border-gray-300 p-4 shadow-lg md:absolute md:right-0 md:z-10 md:m-0 md:w-[300px] md:rounded-3xl md:bg-white"
+      id="guestSelector"
+    >
       <span>Guests</span>
       <div className="flex items-center justify-between gap-2">
         {guest > 0 && (
           <span className="">
             <CiCircleMinus
-              className="h-8 w-8 text-gray-400"
+              className="h-8 w-8 text-gray-400 hover:text-black"
               onClick={() => decreaseGuest()}
             />
           </span>
@@ -30,7 +33,7 @@ const GuestSelector = () => {
         <span className="">{guest}</span>
         <span>
           <CiCirclePlus
-            className="h-8 w-8 text-gray-400"
+            className="h-8 w-8 text-gray-400 hover:text-black"
             onClick={() => increaseGuest()}
           />
         </span>

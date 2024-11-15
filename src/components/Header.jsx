@@ -39,7 +39,7 @@ const Header = () => {
     <>
       <nav
         id="header"
-        className="fixed bottom-0 left-0 z-[1] flex h-20 w-full items-center bg-white px-6 py-2 transition-all duration-500 md:bottom-auto md:top-0 xl:px-20"
+        className="fixed bottom-0 left-0 z-[1] flex w-full items-center bg-white px-6 transition-all duration-500 md:bottom-auto md:top-0 xl:px-20"
       >
         <div className="relative w-full">
           {/* MEDIUM HEADER */}

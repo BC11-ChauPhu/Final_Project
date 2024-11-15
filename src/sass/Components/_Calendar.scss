@@ -1,4 +1,6 @@
 .calendar {
+  scrollbar-width: none;
+
   .calendar-day {
     &.inactive {
       color: rgba($color: #000000, $alpha: 0.2);
