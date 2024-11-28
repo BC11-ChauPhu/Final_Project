@@ -58,11 +58,18 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
     setCalendar(false);
   };
 
+  const handleOnClickLocationSearch = () => {
+    setCalendar(false);
+    setGuestSelector(false);
+  };
+
   const handleShowCalendar = () => {
+    setGuestSelector(false);
     setCalendar((prev) => !prev);
   };
 
   const handleShowGuestSelector = () => {
+    setCalendar(false);
     setGuestSelector((prev) => !prev);
   };
 
@@ -97,7 +104,10 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
             <div className="borde relative mx-auto hidden h-[66px] md:block lg:w-[70%]">
               {/* SEARCH FORM */}
               <div className="dropshadow-xl relative flex rounded-full border border-gray-300 shadow-lg">
-                <div className="w-1/3">
+                <div
+                  className="w-1/3"
+                  onClick={() => handleOnClickLocationSearch()}
+                >
                   <div className="bannerSeachLocale flex h-full md:w-full">
                     <label
                       htmlFor=""

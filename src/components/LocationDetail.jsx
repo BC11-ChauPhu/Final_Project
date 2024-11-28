@@ -20,6 +20,8 @@ import { CiCircleMinus } from "react-icons/ci";
 import { useAuth } from "../service/AuthContext.jsx";
 import UserComment from "./UserComment.jsx";
 import { toast } from "react-toastify";
+import { FaRegShareFromSquare } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa6";
 
 const LocationDetail = () => {
   const { id } = useParams();
@@ -85,6 +87,7 @@ const LocationDetail = () => {
       try {
         const res = await http.get(`/api/phong-thue/${id}`);
         setRoom(res.data.content);
+        console.log(res.data.content);
       } catch (err) {
         console.log(err);
       }
@@ -97,10 +100,28 @@ const LocationDetail = () => {
       {/* IMAGE */}
       <div className="flex flex-col md:flex-col-reverse md:pb-8 md:pt-14 lg:mx-auto lg:w-[1024] xl:w-[1280px]">
         <div className="h-52 md:h-80 md:px-6 lg:h-[489px]">
-          <img src={room.hinhAnh} alt="" className="h-full w-full" />
+          <img
+            src={room.hinhAnh}
+            alt=""
+            className="h-full w-full rounded-lg object-cover"
+          />
         </div>
-        <div className="p-6 pb-3 md:pb-6">
+        <div className="flex items-center justify-between p-6 pb-3 pt-14 md:pb-6">
           <h1 className="text-2xl font-semibold">{room.tenPhong}</h1>
+          <div className="flex gap-4">
+            <span className="flex items-center rounded-lg p-2 transition-all duration-300 hover:bg-gray-200">
+              <span className="mr-2">
+                <FaRegShareFromSquare />
+              </span>
+              <span className="underline">Share</span>
+            </span>
+            <span className="flex items-center rounded-lg p-2 transition-all duration-200 hover:bg-gray-200">
+              <span className="mr-2">
+                <FaRegHeart />
+              </span>
+              <span className="underline">Save</span>
+            </span>
+          </div>
         </div>
       </div>
       {/* CONTENT */}
@@ -109,7 +130,7 @@ const LocationDetail = () => {
         <div className="flex flex-col space-y-4 md:w-[65%]">
           <div className="flex flex-col">
             <div>
-              <h2 className="text-base font-semibold">Available rooms</h2>
+              <h2 className="text-xl font-semibold">Available rooms</h2>
               <p className="flex items-center text-gray-500">
                 <span>{room.khach} guests </span>
                 <span className="mx-1"> · </span>

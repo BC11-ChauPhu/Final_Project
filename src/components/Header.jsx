@@ -3,7 +3,7 @@ import { FaAirbnb } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../service/AuthContext.jsx";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
@@ -13,6 +13,8 @@ import useScrollToTop from "../service/useScrollToTop.jsx";
 const Header = () => {
   useScrollToTop();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isSelectedLocation, setIsSelectedLocation] = useState(false);
   const { isAuthenciated, logout } = useAuth();
 
   const scrollHeader = () => {
@@ -35,11 +37,20 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", scrollHeader);
   });
+
+  useEffect(() => {
+    if (location.pathname.includes("/selectedLocation")) {
+      setIsSelectedLocation(true);
+    } else {
+      setIsSelectedLocation(false);
+    }
+  }, [location]);
+
   return (
     <>
       <nav
         id="header"
-        className="fixed bottom-0 left-0 z-[1] flex w-full items-center bg-white px-6 transition-all duration-500 md:bottom-auto md:top-0 xl:px-20"
+        className={`fixed bottom-0 left-0 z-[1] flex w-full items-center bg-white transition-all duration-500 md:bottom-auto md:top-0 ${isSelectedLocation ? "xl:px-4" : "xl:px-20"}`}
       >
         <div className="relative w-full">
           {/* MEDIUM HEADER */}
@@ -50,7 +61,7 @@ const Header = () => {
               className="hidden cursor-pointer items-center py-2 text-3xl text-brand md:flex"
               onClick={() => navigate(`/`)}
             >
-              <FaAirbnb />
+              <FaAirbnb className="mr-1 h-8 w-8" />
               <span className="text-2xl font-bold">airbnb</span>
             </div>
             <div className="hidden justify-center gap-4 text-gray-600 md:flex">

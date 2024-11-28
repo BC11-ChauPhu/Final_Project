@@ -9,16 +9,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
+import opencage from "opencage-api-client";
+import { useDispatch } from "react-redux";
+import { setCoords } from "../features/getLocationForMap/registerMapSlice";
 
 const NearbyLocation = () => {
   useScrollToTop();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [locations, setLocation] = useState([]);
+
   useEffect(() => {
     http
       .get("/api/vi-tri")
       .then((res) => {
-        console.log(res);
         setLocation(res.data.content);
       })
       .catch((err) => {
@@ -26,13 +30,34 @@ const NearbyLocation = () => {
       });
   }, []);
 
+  const getCoordinates = async (locationName) => {
+    try {
+      const response = await opencage.geocode({
+        key: "0c633698ef6f4e0b8c21767ca08a95c8",
+        q: locationName,
+      });
+
+      if (response && response.results.length > 0) {
+        const { lat, lng } = response.results[0].geometry;
+        dispatch(setCoords([lat, lng]));
+        return { latitude: lat, longtitude: lng };
+      }
+    } catch (error) {
+      console.error("Geocoding error:", error);
+    }
+  };
+
+  const handleLocationClick = async (locationName, locationId) => {
+    const coords = await getCoordinates(locationName);
+    navigate(`/location/selectedLocation/${locationId}`);
+  };
+
   return (
     <section id="nearbyLocation" className="block border border-t-gray-200">
       <div className="mx-auto px-6 md:mt-4 lg:mb-10 xl:px-20">
         <h2 className="mb-3 text-center text-3xl font-bold md:text-left">
           Popular locations
         </h2>
-
         <div className="grid space-y-6 xs:grid-cols-1 md:grid-cols-2 md:gap-6 md:gap-y-10 md:space-y-0 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6">
           {locations?.map((item, index) => {
             return (
@@ -47,7 +72,7 @@ const NearbyLocation = () => {
                       <div
                         className="h-full"
                         onClick={() => {
-                          navigate(`/location/selectedLocation/${item.id}`);
+                          handleLocationClick(item.tinhThanh, item.id);
                         }}
                       >
                         <img
@@ -75,7 +100,7 @@ const NearbyLocation = () => {
                       <div
                         className="h-full"
                         onClick={() => {
-                          navigate(`/location/selectedLocation/${item.id}`);
+                          handleLocationClick(item.tinhThanh, item.id);
                         }}
                       >
                         <img
@@ -103,7 +128,7 @@ const NearbyLocation = () => {
                       <div
                         className="h-full"
                         onClick={() => {
-                          navigate(`/location/selectedLocation/${item.id}`);
+                          handleLocationClick(item.tinhThanh, item.id);
                         }}
                       >
                         <img
@@ -131,7 +156,7 @@ const NearbyLocation = () => {
                       <div
                         className="h-full"
                         onClick={() => {
-                          navigate(`/location/selectedLocation/${item.id}`);
+                          handleLocationClick(item.tinhThanh, item.id);
                         }}
                       >
                         <img
@@ -159,7 +184,7 @@ const NearbyLocation = () => {
                       <div
                         className="h-full"
                         onClick={() => {
-                          navigate(`/location/selectedLocation/${item.id}`);
+                          handleLocationClick(item.tinhThanh, item.id);
                         }}
                       >
                         <img
@@ -188,9 +213,8 @@ const NearbyLocation = () => {
                     <p className="font-semibold">
                       {item.tenViTri}, {item.tinhThanh}, {item.quocGia}
                     </p>
-                    <p className="mt text-gray-500">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
-                    </p>
+                    <p className="mt text-gray-600">152 km away</p>
+                    <p className="text-gray-600">Dec.1-6</p>
                   </div>
                   <div>
                     <span className="flex items-baseline justify-between">

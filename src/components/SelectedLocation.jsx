@@ -16,38 +16,37 @@ const SelectedLocation = () => {
   useScrollToTop();
   const { id } = useParams();
   const [location, setLocation] = useState([]);
+  const [roomNum, setroomNum] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
     http
       .get(`/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`)
-      .then((res) => setLocation(res.data.content))
+      .then((res) => {
+        setroomNum(res.data.content.length), setLocation(res.data.content);
+        console.log(res);
+      })
       .catch((err) => console.log(err));
   }, []);
 
   // useEffect(() => {
-  //   console.log(location);
-  // }, [location]);
-  //
-  //
+  //   console.log(roomNum);
+  // }, [roomNum]);
 
   return (
     <section id="selectedLocation">
-      <div className="xl:plx-6 mx-auto px-6 py-20">
-        <div className="py-8">
-          <p className="text-center text-xl font-semibold md:text-2xl">
-            Selected location
-          </p>
-        </div>
+      <div className="xl:plx-6 py-20 pb-0">
         {/* CONTENT */}
-        <div className="grid grid-cols-2 gap-6">
-          <div className="">
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2">
+        <div className="contentContainer relative grid grid-cols-2 overflow-y-scroll border-t border-t-gray-300">
+          <div className="mx-6 pb-6">
+            <div>
+              <p className="roomNumbers py-6">
+                There are {roomNum} rooms that fit your criterias
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-1 lg:grid-cols-2">
               {location?.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => navigate(`/location/detail/${id} `)}
-                >
+                <div key={index}>
                   <div className="locationItem flex flex-col gap-3">
                     <Swiper
                       navigation={true}
@@ -56,7 +55,10 @@ const SelectedLocation = () => {
                     >
                       <SwiperSlide className="h-80">
                         <div className="relative h-full">
-                          <div className="h-full">
+                          <div
+                            className="h-full"
+                            onClick={() => navigate(`/location/detail/${id} `)}
+                          >
                             <img
                               className="h-full w-full rounded-lg object-cover object-center"
                               src={item.hinhAnh}
@@ -184,7 +186,9 @@ const SelectedLocation = () => {
                           </p>
                           <p>{item.giuong} bed</p>
                           <p>Aug.11-16</p>
-                          <p>${item.giaTien}/night</p>
+                          <p className="font-semibold text-black">
+                            ${item.giaTien} night
+                          </p>
                         </div>
                       </div>
                       {/* RIGHT DESCRIPTION */}
@@ -202,7 +206,7 @@ const SelectedLocation = () => {
               ))}
             </div>
           </div>
-          <div className="sticky top-0">
+          <div className="mapContainer top-0 z-0">
             <MapComponent />
           </div>
         </div>

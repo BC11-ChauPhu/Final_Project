@@ -3,6 +3,11 @@
     transition: all 0.3s;
   }
 
+  .roomNumbers {
+    color: #222222;
+    font-weight: 550;
+  }
+
   .locationItem:hover {
     .swiper-button-prev,
     .swiper-button-next {

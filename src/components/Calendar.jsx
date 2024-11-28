@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setDate } from "../features/dateSelection/dateSelectSlice";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [prevButton, setPrevButton] = useState(false);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+  const dispatch = useDispatch();
+
   const nextMonthDate = new Date(currentDate);
   const today = new Date();
   nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
-
-  const startDate = useState();
-  const endDate = useState();
 
   const getCurrentMonthYear = () => {
     const month = currentDate.toLocaleDateString("default", { month: "long" });
@@ -75,11 +79,36 @@ const Calendar = () => {
     );
   };
 
-  const onDateSelect = () => {};
+  const handleDateSelect = (day, month, year) => {
+    if (!day) return;
+
+    const selectedDate = new Date(year, month, day);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    if (!startDate || (startDate && endDate)) {
+      setStartDate(selectedDate);
+      setEndDate(null);
+    } else if (selectedDate < startDate) {
+      setStartDate(selectedDate);
+    } else {
+      setEndDate(selectedDate);
+
+      const dateRange = {
+        start: startDate.toISOString(),
+        end: selectedDate.toISOString(),
+      };
+      console.log(dateRange);
+      dispatch(setDate(dateRange));
+    }
+  };
 
   useEffect(() => {
     setPrevButton(!isPreviousButtonDisabled());
   }, [currentDate]);
+
+  useEffect(() => {
+    console.log(`Start date: ${startDate}`);
+  }, [startDate]);
 
   return (
     <>
@@ -104,7 +133,13 @@ const Calendar = () => {
               <div
                 key={index}
                 className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""}`}
-                onClick={() => onDateSelect(e)}
+                onClick={() =>
+                  handleDateSelect(
+                    day,
+                    currentDate.getMonth(),
+                    currentDate.getFullYear(),
+                  )
+                }
               >
                 {day}
               </div>
