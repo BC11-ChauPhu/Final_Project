@@ -87,7 +87,6 @@ const LocationDetail = () => {
       try {
         const res = await http.get(`/api/phong-thue/${id}`);
         setRoom(res.data.content);
-        console.log(res.data.content);
       } catch (err) {
         console.log(err);
       }

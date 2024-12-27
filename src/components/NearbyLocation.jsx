@@ -53,7 +53,7 @@ const NearbyLocation = () => {
   };
 
   return (
-    <section id="nearbyLocation" className="block border border-t-gray-200">
+    <section id="nearbyLocation" className="block">
       <div className="mx-auto px-6 md:mt-4 lg:mb-10 xl:px-20">
         <h2 className="mb-3 text-center text-3xl font-bold md:text-left">
           Popular locations
@@ -61,7 +61,15 @@ const NearbyLocation = () => {
         <div className="grid space-y-6 xs:grid-cols-1 md:grid-cols-2 md:gap-6 md:gap-y-10 md:space-y-0 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6">
           {locations?.map((item, index) => {
             return (
-              <div key={index} className="locationItem flex flex-col">
+              <div
+                key={index}
+                className="locationItem flex flex-col"
+                onClick={() => {
+                  const location =
+                    item.tenViTri + ", " + item.tinhThanh + ", " + item.quocGia;
+                  handleLocationClick(location, item.id);
+                }}
+              >
                 <Swiper
                   navigation={true}
                   pagination={true}
@@ -69,12 +77,7 @@ const NearbyLocation = () => {
                 >
                   <SwiperSlide>
                     <div className="relative md:h-80 lg:h-64">
-                      <div
-                        className="h-full"
-                        onClick={() => {
-                          handleLocationClick(item.tinhThanh, item.id);
-                        }}
-                      >
+                      <div className="h-full">
                         <img
                           className="block h-full w-full rounded-lg object-cover"
                           src={item.hinhAnh}
@@ -223,9 +226,6 @@ const NearbyLocation = () => {
                       </span>
                       <span>4.5</span>
                     </span>
-                  </div>
-                  <div className="mt-1">
-                    <span className="font-semibold">$100</span> night
                   </div>
                 </div>
               </div>

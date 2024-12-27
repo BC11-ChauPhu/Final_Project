@@ -20,31 +20,51 @@ const SelectedLocation = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    http
-      .get(`/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`)
-      .then((res) => {
-        setroomNum(res.data.content.length), setLocation(res.data.content);
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  // useEffect(() => {
-  //   console.log(roomNum);
-  // }, [roomNum]);
+    if (id && !isNaN(Number(id))) {
+      const fetchData = async () => {
+        try {
+          const res = await http.get(
+            `/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`,
+          );
+          setroomNum(res.data.content.length);
+          setLocation(res.data.content);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+    } else {
+      const fetchData = async () => {
+        try {
+          const res = await http.get(`/api/phong-thue`);
+          setroomNum(res.data.content.length);
+          setLocation(res.data.content);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+    }
+  }, [id]);
 
   return (
     <section id="selectedLocation">
-      <div className="xl:plx-6 py-20 pb-0">
+      <div
+        className={`py-20 pb-0 ${isNaN(Number(id)) ? "xl:px-20" : "xl:px-6"}`}
+      >
         {/* CONTENT */}
-        <div className="contentContainer relative grid grid-cols-2 overflow-y-scroll border-t border-t-gray-300">
-          <div className="mx-6 pb-6">
+        <div
+          className={`contentContainer relative grid overflow-y-scroll ${isNaN(Number(id)) ? "h-full grid-cols-1" : "grid-cols-2"} `}
+        >
+          <div className="mr-6 pb-6">
             <div>
               <p className="roomNumbers py-6">
                 There are {roomNum} rooms that fit your criterias
               </p>
             </div>
-            <div className="grid gap-5 md:grid-cols-1 lg:grid-cols-2">
+            <div
+              className={`grid gap-5 ${isNaN(Number(id)) ? "lg:grid-cols-5" : "lg:grid-cols-2"} grid-cols-1`}
+            >
               {location?.map((item, index) => (
                 <div key={index}>
                   <div className="locationItem flex flex-col gap-3">
@@ -206,9 +226,11 @@ const SelectedLocation = () => {
               ))}
             </div>
           </div>
-          <div className="mapContainer top-0 z-0">
-            <MapComponent />
-          </div>
+          {id && !isNaN(Number(id)) && (
+            <div className="mapContainer top-0 z-0">
+              <MapComponent />
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
+import { useDispatch, useSelector } from "react-redux";
+import { setGuests } from "../features/guestSelection/guestSelectionSlice";
 
 const GuestSelector = () => {
-  const [guest, setGuest] = useState(0);
+  const dispatch = useDispatch();
+  const guest = useSelector((state) => state.guestSelection.guests);
 
   const decreaseGuest = () => {
     if (guest > 0) {
-      setGuest(guest - 1);
+      dispatch(setGuests(guest - 1));
     }
   };
 
   const increaseGuest = () => {
-    setGuest(guest + 1);
+    dispatch(setGuests(guest + 1));
   };
+
+  useEffect(() => {
+    dispatch(setGuests(guest));
+  }, [guest]);
 
   return (
     <div

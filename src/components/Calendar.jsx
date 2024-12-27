@@ -83,7 +83,6 @@ const Calendar = () => {
     if (!day) return;
 
     const selectedDate = new Date(year, month, day);
-    selectedDate.setHours(0, 0, 0, 0);
 
     if (!startDate || (startDate && endDate)) {
       setStartDate(selectedDate);
@@ -93,11 +92,18 @@ const Calendar = () => {
     } else {
       setEndDate(selectedDate);
 
-      const dateRange = {
-        start: startDate.toISOString(),
-        end: selectedDate.toISOString(),
+      const adjustDate = (date) => {
+        const localDate = new Date(date);
+        localDate.setMinutes(
+          localDate.getMinutes() - localDate.getTimezoneOffset(),
+        );
+        return localDate.toISOString().split("T")[0];
       };
-      console.log(dateRange);
+
+      const dateRange = {
+        start: adjustDate(startDate),
+        end: adjustDate(selectedDate),
+      };
       dispatch(setDate(dateRange));
     }
   };
@@ -105,10 +111,6 @@ const Calendar = () => {
   useEffect(() => {
     setPrevButton(!isPreviousButtonDisabled());
   }, [currentDate]);
-
-  useEffect(() => {
-    console.log(`Start date: ${startDate}`);
-  }, [startDate]);
 
   return (
     <>
@@ -132,7 +134,7 @@ const Calendar = () => {
             {currentMonthDays.map((day, index) => (
               <div
                 key={index}
-                className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""}`}
+                className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""} ${startDate && endDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) >= startDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""} `}
                 onClick={() =>
                   handleDateSelect(
                     day,
@@ -146,6 +148,7 @@ const Calendar = () => {
             ))}
           </div>
         </div>
+        {/* NEXT MONTH SECTION */}
         <div className="w-full px-6 transition-all duration-500 md:w-[49%]">
           <div className="relative">
             <h2 className="mb-8 mt-6 flex items-center justify-around text-center font-semibold">
@@ -165,7 +168,14 @@ const Calendar = () => {
             {nextMonthDays.map((day, index) => (
               <div
                 key={index}
-                className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""}`}
+                className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""} ${startDate && endDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) >= startDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""}`}
+                onClick={() =>
+                  handleDateSelect(
+                    day,
+                    nextMonthDate.getMonth(),
+                    nextMonthDate.getFullYear(),
+                  )
+                }
               >
                 {day}
               </div>

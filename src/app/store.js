@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import registerMapReducer from "../features/getLocationForMap/registerMapSlice";
 import { persistStore, persistReducer } from "redux-persist";
+import guestSelectReducer from "../features/guestSelection/guestSelectionSlice";
 import sessionStorage from "redux-persist/es/storage/session";
 import dateSelectReducer from "../features/dateSelection/dateSelectSlice";
+import smallHeaderActiveReducer from "../features/smallHeaderAcitve/smallHeaderActiveSlice";
 
 const persistConfig = {
   key: "root",
@@ -15,6 +17,8 @@ export const store = configureStore({
   reducer: {
     registerMap: persistedReducer,
     dateSelection: dateSelectReducer,
+    guestSelection: guestSelectReducer,
+    smallHeaderAcitve: smallHeaderActiveReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

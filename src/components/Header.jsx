@@ -9,13 +9,22 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { CiGlobe } from "react-icons/ci";
 import useScrollToTop from "../service/useScrollToTop.jsx";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
   useScrollToTop();
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [isSelectedLocation, setIsSelectedLocation] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const { isAuthenciated, logout } = useAuth();
+
+  const handleItemClick = (index, path) => {
+    console.log(index);
+    dispatch(setActiveIndex(index));
+    navigate(path);
+  };
 
   const scrollHeader = () => {
     if (document.documentElement.scrollTop > 10) {
@@ -127,23 +136,32 @@ const Header = () => {
           </div>
           {/* SMALL HEADER */}
           <div className="flex items-center justify-center gap-6 text-gray-400 md:hidden">
-            <div className="sHeaderItem active grid">
+            <div
+              className={`sHeaderItem grid ${activeIndex === 0 ? "active" : ""}`}
+              onClick={() => handleItemClick(0, "/")}
+            >
               <p className="grid justify-center">
                 <FaMagnifyingGlass className="text-2xl" />
               </p>
               <p className="text-xs">Explore</p>
             </div>
-            <div className="sHeaderItem grid">
+            <div
+              className={`sHeaderItem grid ${activeIndex === 1 ? "active" : ""}`}
+              onClick={() => handleItemClick(1, "/")}
+            >
               <p className="grid justify-center text-2xl">
                 <FaRegHeart />
               </p>
               <p className="text-xs">Wishlist</p>
             </div>
-            <div className="sHeaderItem grid">
+            <div
+              className={`sHeaderItem grid ${activeIndex === 2 ? "active" : ""}`}
+              onClick={() => handleItemClick(2, "/register")}
+            >
               <p className="grid justify-center">
                 <FaRegUserCircle className="text-2xl" />
               </p>
-              <p className="text-xs">Log in</p>
+              <p className="text-xs">Register</p>
             </div>
           </div>
         </div>
