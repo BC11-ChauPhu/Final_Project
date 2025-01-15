@@ -98,16 +98,16 @@ const LocationDetail = () => {
     <section className="mb-10">
       {/* IMAGE */}
       <div className="flex flex-col md:flex-col-reverse md:pb-8 md:pt-14 lg:mx-auto lg:w-[1024] xl:w-[1280px]">
-        <div className="h-52 md:h-80 md:px-6 lg:h-[489px]">
+        <div className="h-72 md:h-80 md:px-6 lg:h-[489px]">
           <img
             src={room.hinhAnh}
             alt=""
             className="h-full w-full rounded-lg object-cover"
           />
         </div>
-        <div className="flex items-center justify-between p-6 pb-3 pt-14 md:pb-6">
+        <div className="flex items-center justify-between p-6 pb-3 md:pb-6 md:pt-14">
           <h1 className="text-2xl font-semibold">{room.tenPhong}</h1>
-          <div className="flex gap-4">
+          <div className="hidden gap-4 md:flex">
             <span className="flex items-center rounded-lg p-2 transition-all duration-300 hover:bg-gray-200">
               <span className="mr-2">
                 <FaRegShareFromSquare />

@@ -130,7 +130,9 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
   };
 
   useEffect(() => {
-    handleAfterGetSearchValue(input);
+    if (input.trim() !== "") {
+      handleAfterGetSearchValue(input);
+    }
   }, [input]);
 
   return (

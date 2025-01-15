@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
+import Banner from "./Banner";
 
 const SelectedLocation = () => {
   useScrollToTop();
@@ -49,21 +50,21 @@ const SelectedLocation = () => {
 
   return (
     <section id="selectedLocation">
-      <div
-        className={`py-20 pb-0 ${isNaN(Number(id)) ? "xl:px-20" : "xl:px-6"}`}
-      >
+      <div className="px-6 pb-6 md:p-0 md:px-20">
         {/* CONTENT */}
         <div
-          className={`contentContainer relative grid overflow-y-scroll ${isNaN(Number(id)) ? "h-full grid-cols-1" : "grid-cols-2"} `}
+          className={`contentContainer relative md:overflow-y-scroll ${isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} `}
         >
-          <div className="mr-6 pb-6">
+          <div
+            className={`${id && !isNaN(Number(id)) ? "md:mr-6" : ""} pb-6 md:pt-20`}
+          >
             <div>
-              <p className="roomNumbers py-6">
+              <p className="roomNumbers py-6 md:py-6">
                 There are {roomNum} rooms that fit your criterias
               </p>
             </div>
             <div
-              className={`grid gap-5 ${isNaN(Number(id)) ? "lg:grid-cols-5" : "lg:grid-cols-2"} grid-cols-1`}
+              className={`grid gap-10 ${isNaN(Number(id)) ? "lg:grid-cols-3 xl:grid-cols-5" : "lg:grid-cols-2"} grid-cols-1 md:grid-cols-2`}
             >
               {location?.map((item, index) => (
                 <div key={index}>
@@ -73,7 +74,9 @@ const SelectedLocation = () => {
                       pagination={true}
                       modules={[Pagination, Navigation]}
                     >
-                      <SwiperSlide className="h-80">
+                      <SwiperSlide
+                        className={` ${isNaN(Number(id)) ? "h-64" : "h-80"}`}
+                      >
                         <div className="relative h-full">
                           <div
                             className="h-full"
@@ -99,7 +102,7 @@ const SelectedLocation = () => {
                           </div>
                         </div>
                       </SwiperSlide>
-                      <SwiperSlide className="h-80">
+                      <SwiperSlide className="h-64">
                         <div className="relative h-full">
                           <div className="h-full">
                             <img
@@ -122,7 +125,7 @@ const SelectedLocation = () => {
                           </div>
                         </div>
                       </SwiperSlide>
-                      <SwiperSlide className="h-80">
+                      <SwiperSlide className="h-64">
                         <div className="relative h-full">
                           <div className="h-full">
                             <img
@@ -145,7 +148,7 @@ const SelectedLocation = () => {
                           </div>
                         </div>
                       </SwiperSlide>
-                      <SwiperSlide className="h-80">
+                      <SwiperSlide className="h-64">
                         <div className="relative h-full">
                           <div className="h-full">
                             <img
@@ -168,7 +171,7 @@ const SelectedLocation = () => {
                           </div>
                         </div>
                       </SwiperSlide>
-                      <SwiperSlide className="h-80">
+                      <SwiperSlide className="h-64">
                         <div className="relative h-full">
                           <div className="h-full">
                             <img

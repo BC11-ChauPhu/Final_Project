@@ -1,6 +1,8 @@
 .contentContainer {
-  height: calc(100vh - $header);
-  scrollbar-width: none;
+  @media (min-wdith: 768px){
+    height: calc(100vh - $header);
+    scrollbar-width: none;
+  }
 }
 
 .mapContainer {
@@ -11,4 +13,4 @@
 
 .leaflet-container {
   height: calc(100vh - $header);
-}
+}       
