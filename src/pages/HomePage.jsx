@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Banner from "../components/Banner";
 import NearbyLocation from "../components/NearbyLocation";
 import StaticLocale from "../components/StaticLocale";
-import IconRow from "../components/IconRow";
+import BackToTopButton from "../components/BackToTopButton";
 
 const HomePage = ({ showPopUpSearch, togglePopUp }) => {
   useEffect(() => {
@@ -14,6 +14,7 @@ const HomePage = ({ showPopUpSearch, togglePopUp }) => {
       <Banner onClickToggle={togglePopUp} showPopUpSearch={showPopUpSearch} />
       {!showPopUpSearch && <NearbyLocation />}
       {!showPopUpSearch && <StaticLocale />}
+      <BackToTopButton />
     </>
   );
 };

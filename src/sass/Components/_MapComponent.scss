@@ -1,5 +1,5 @@
-.contentContainer {
-  @media (min-wdith: 768px){
+.content {
+  @media (min-width: 768px) {
     height: calc(100vh - $header);
     scrollbar-width: none;
   }
@@ -13,4 +13,4 @@
 
 .leaflet-container {
   height: calc(100vh - $header);
-}       
+}

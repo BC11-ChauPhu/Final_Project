@@ -65,7 +65,6 @@ const Header = () => {
       setIsMediumScreen(window.innerWidth >= 768);
     };
     window.addEventListener("resize", handleScreenSize);
-    console.log(isMediumScreen);
     return () => window.removeEventListener("resize", handleScreenSize);
   }, []);
 

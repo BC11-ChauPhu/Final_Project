@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import LocationDetail from "../components/LocationDetail";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BackToTopButton from "../components/BackToTopButton";
 
 export const NotificationContext = createContext();
 
@@ -22,6 +23,7 @@ const LocationDetailPage = () => {
     >
       <LocationDetail />
       <ToastContainer />
+      <BackToTopButton />
     </NotificationContext.Provider>
   );
 };

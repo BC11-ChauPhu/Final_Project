@@ -12,9 +12,6 @@ import {
 import { GiWashingMachine } from "react-icons/gi";
 import { PiTelevision } from "react-icons/pi";
 import LocationComments from "./LocationComments.jsx";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import DateSelector from "./DateSelector.jsx";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import { useAuth } from "../service/AuthContext.jsx";
@@ -22,17 +19,21 @@ import UserComment from "./UserComment.jsx";
 import { toast } from "react-toastify";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa6";
+import Calendar from "./Calendar.jsx";
+import { useSelector } from "react-redux";
 
 const LocationDetail = () => {
   const { id } = useParams();
   const [room, setRoom] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const dateRange = useSelector((state) => state.dateSelection.date);
+  const startDate = useState(new Date());
+  const endDate = useState(new Date());
   const [guests, setGuests] = useState(0);
   const generateRandomId = () => Math.floor(Math.random() * 10000);
   const userData = JSON.parse(localStorage.getItem("user"));
   const [reloadComments, setReloadComments] = useState(false);
   const { isAuthenciated } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const triggerReloadComments = () => {
     setReloadComments(!reloadComments);
@@ -82,6 +83,24 @@ const LocationDetail = () => {
     setGuests(guests + 1);
   };
 
+  const handleDateSelection = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const formatDateToMonthDay = (dateString) => {
+    const date = new Date(dateString);
+    return date
+      .toLocaleString("en-us", {
+        month: "long",
+        day: "2-digit",
+      })
+      .replace(" ", ".");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -94,8 +113,12 @@ const LocationDetail = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(dateRange);
+  }, [dateRange]);
+
   return (
-    <section className="mb-10">
+    <section className="relative mb-10">
       {/* IMAGE */}
       <div className="flex flex-col md:flex-col-reverse md:pb-8 md:pt-14 lg:mx-auto lg:w-[1024] xl:w-[1280px]">
         <div className="h-72 md:h-80 md:px-6 lg:h-[489px]">
@@ -238,13 +261,7 @@ const LocationDetail = () => {
                   <div className="w-full">
                     <div className="flex flex-col rounded-tl-xl border border-gray-400 px-2 py-2 text-left">
                       <span className="font-bold">CHECK-IN</span>
-                      <span className="overflow-ellipsis whitespace-nowrap text-base">
-                        <DatePicker
-                          className="w-full"
-                          selected={startDate}
-                          onChange={(date) => setStartDate(date)}
-                        />
-                      </span>
+                      <span className="overflow-ellipsis whitespace-nowrap text-base"></span>
                     </div>
                   </div>
                 </div>
@@ -252,13 +269,7 @@ const LocationDetail = () => {
                   <button className="w-full">
                     <div className="flex flex-col rounded-tr-xl border border-gray-400 border-l-transparent px-2 py-2 text-left">
                       <span className="font-bold">CHECK-OUT</span>
-                      <span className="overflow-ellipsis whitespace-nowrap text-base">
-                        <DatePicker
-                          className="w-full"
-                          selected={endDate}
-                          onChange={(date) => setEndDate(date)}
-                        />
-                      </span>
+                      <span className="overflow-ellipsis whitespace-nowrap text-base"></span>
                     </div>
                   </button>
                 </div>
@@ -329,26 +340,10 @@ const LocationDetail = () => {
                     <div className="flex justify-between">
                       <span>${room.giaTien}/night</span>
                     </div>
-                    <div>
-                      <span className="flex justify-start">
-                        <span className="max-w-[86px]">
-                          <DatePicker
-                            className="w-full text-sm underline"
-                            selected={startDate}
-                            onChange={(date) => setStartDate(date)}
-                            withPortal
-                          />
-                        </span>
-                        <span className="px-1">-</span>
-                        <span className="max-w-[86px]">
-                          <DatePicker
-                            className="w-full text-sm underline"
-                            selected={endDate}
-                            onChange={(date) => setEndDate(date)}
-                            withPortal
-                          />
-                        </span>
-                      </span>
+                    <div onClick={handleDateSelection}>
+                      {dateRange
+                        ? `${formatDateToMonthDay(dateRange.start)} - ${formatDateToMonthDay(dateRange.end)}`
+                        : "Select a date"}
                     </div>
                     <div>
                       <div className="flex items-center gap-1">
@@ -380,6 +375,15 @@ const LocationDetail = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div
+        id="calendarModal"
+        className={`fixed top-0 z-10 h-dvh items-center overflow-auto bg-black/50 transition-all duration-300 ${isModalOpen ? "open" : "close"}`}
+        onClick={closeModal}
+      >
+        <div onClick={(e) => e.stopPropagation()}>
+          <Calendar />
         </div>
       </div>
     </section>

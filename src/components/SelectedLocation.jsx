@@ -53,10 +53,10 @@ const SelectedLocation = () => {
       <div className="px-6 pb-6 md:p-0 md:px-20">
         {/* CONTENT */}
         <div
-          className={`contentContainer relative md:overflow-y-scroll ${isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} `}
+          className={`content relative md:overflow-y-scroll ${isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} grid pb-6`}
         >
           <div
-            className={`${id && !isNaN(Number(id)) ? "md:mr-6" : ""} pb-6 md:pt-20`}
+            className={`${id && !isNaN(Number(id)) ? "md:mr-6" : ""} md:pt-20`}
           >
             <div>
               <p className="roomNumbers py-6 md:py-6">
