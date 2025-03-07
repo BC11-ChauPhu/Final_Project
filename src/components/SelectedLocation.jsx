@@ -53,11 +53,9 @@ const SelectedLocation = () => {
       <div className="px-6 pb-6 md:p-0 md:px-20">
         {/* CONTENT */}
         <div
-          className={`content relative md:overflow-y-scroll ${isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} grid pb-6`}
+          className={`content relative md:overflow-y-scroll ${isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} mt-16 grid`}
         >
-          <div
-            className={`${id && !isNaN(Number(id)) ? "md:mr-6" : ""} md:pt-20`}
-          >
+          <div className={`${id && !isNaN(Number(id)) ? "md:mr-6" : ""} pb-6`}>
             <div>
               <p className="roomNumbers py-6 md:py-6">
                 There are {roomNum} rooms that fit your criterias
@@ -74,6 +72,96 @@ const SelectedLocation = () => {
                       pagination={true}
                       modules={[Pagination, Navigation]}
                     >
+                      <SwiperSlide
+                        className={` ${isNaN(Number(id)) ? "h-64" : "h-80"}`}
+                      >
+                        <div className="relative h-full">
+                          <div
+                            className="h-full"
+                            onClick={() =>
+                              navigate(`/location/detail/${item.id} `)
+                            }
+                          >
+                            <img
+                              className="h-full w-full rounded-lg object-cover object-center"
+                              src={item.hinhAnh}
+                              alt=""
+                            />
+                            <div>
+                              <div className="absolute right-3 top-3">
+                                <button>
+                                  <PiHeartDuotone className="block h-6 w-6 text-white hover:scale-110" />
+                                </button>
+                              </div>
+                              <div className="absolute left-3 top-3">
+                                <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                                  Guest favorite
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide
+                        className={` ${isNaN(Number(id)) ? "h-64" : "h-80"}`}
+                      >
+                        <div className="relative h-full">
+                          <div
+                            className="h-full"
+                            onClick={() =>
+                              navigate(`/location/detail/${item.id} `)
+                            }
+                          >
+                            <img
+                              className="h-full w-full rounded-lg object-cover object-center"
+                              src={item.hinhAnh}
+                              alt=""
+                            />
+                            <div>
+                              <div className="absolute right-3 top-3">
+                                <button>
+                                  <PiHeartDuotone className="block h-6 w-6 text-white hover:scale-110" />
+                                </button>
+                              </div>
+                              <div className="absolute left-3 top-3">
+                                <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                                  Guest favorite
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide
+                        className={` ${isNaN(Number(id)) ? "h-64" : "h-80"}`}
+                      >
+                        <div className="relative h-full">
+                          <div
+                            className="h-full"
+                            onClick={() =>
+                              navigate(`/location/detail/${item.id} `)
+                            }
+                          >
+                            <img
+                              className="h-full w-full rounded-lg object-cover object-center"
+                              src={item.hinhAnh}
+                              alt=""
+                            />
+                            <div>
+                              <div className="absolute right-3 top-3">
+                                <button>
+                                  <PiHeartDuotone className="block h-6 w-6 text-white hover:scale-110" />
+                                </button>
+                              </div>
+                              <div className="absolute left-3 top-3">
+                                <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
+                                  Guest favorite
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </SwiperSlide>
                       <SwiperSlide
                         className={` ${isNaN(Number(id)) ? "h-64" : "h-80"}`}
                       >
@@ -102,78 +190,14 @@ const SelectedLocation = () => {
                           </div>
                         </div>
                       </SwiperSlide>
-                      <SwiperSlide className="h-64">
+                      <SwiperSlide
+                        className={` ${isNaN(Number(id)) ? "h-64" : "h-80"}`}
+                      >
                         <div className="relative h-full">
-                          <div className="h-full">
-                            <img
-                              className="h-full w-full rounded-lg object-cover object-center"
-                              src={item.hinhAnh}
-                              alt=""
-                            />
-                            <div>
-                              <div className="absolute right-3 top-3">
-                                <button>
-                                  <PiHeartDuotone className="block h-6 w-6 text-white hover:scale-110" />
-                                </button>
-                              </div>
-                              <div className="absolute left-3 top-3">
-                                <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
-                                  Guest favorite
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide className="h-64">
-                        <div className="relative h-full">
-                          <div className="h-full">
-                            <img
-                              className="h-full w-full rounded-lg object-cover object-center"
-                              src={item.hinhAnh}
-                              alt=""
-                            />
-                            <div>
-                              <div className="absolute right-3 top-3">
-                                <button>
-                                  <PiHeartDuotone className="block h-6 w-6 text-white hover:scale-110" />
-                                </button>
-                              </div>
-                              <div className="absolute left-3 top-3">
-                                <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
-                                  Guest favorite
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide className="h-64">
-                        <div className="relative h-full">
-                          <div className="h-full">
-                            <img
-                              className="h-full w-full rounded-lg object-cover object-center"
-                              src={item.hinhAnh}
-                              alt=""
-                            />
-                            <div>
-                              <div className="absolute right-3 top-3">
-                                <button>
-                                  <PiHeartDuotone className="block h-6 w-6 text-white hover:scale-110" />
-                                </button>
-                              </div>
-                              <div className="absolute left-3 top-3">
-                                <span className="rounded-xl bg-white p-1 px-2 font-semibold shadow-lg">
-                                  Guest favorite
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide className="h-64">
-                        <div className="relative h-full">
-                          <div className="h-full">
+                          <div
+                            className="h-full"
+                            onClick={() => navigate(`/location/detail/${id} `)}
+                          >
                             <img
                               className="h-full w-full rounded-lg object-cover object-center"
                               src={item.hinhAnh}
@@ -230,7 +254,7 @@ const SelectedLocation = () => {
             </div>
           </div>
           {id && !isNaN(Number(id)) && (
-            <div className="mapContainer top-0 z-0">
+            <div className="mapContainer z-0">
               <MapComponent />
             </div>
           )}

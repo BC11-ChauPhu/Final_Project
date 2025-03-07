@@ -5,6 +5,7 @@ import guestSelectReducer from "../features/guestSelection/guestSelectionSlice";
 import sessionStorage from "redux-persist/es/storage/session";
 import dateSelectReducer from "../features/dateSelection/dateSelectSlice";
 import smallHeaderActiveReducer from "../features/smallHeaderAcitve/smallHeaderActiveSlice";
+import averageRatingReducer from '../features/averageRating/averageRatingSlice'
 
 const persistConfig = {
   key: "root",
@@ -19,6 +20,7 @@ export const store = configureStore({
     dateSelection: dateSelectReducer,
     guestSelection: guestSelectReducer,
     smallHeaderAcitve: smallHeaderActiveReducer,
+    averageRating: averageRatingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

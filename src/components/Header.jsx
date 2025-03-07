@@ -210,7 +210,7 @@ const Header = () => {
           className={`header ${activeHeader && isMediumScreen ? "active" : ""} absolute left-0 z-[1] flex w-full items-center justify-between bg-transparent transition-all duration-500 md:fixed md:bottom-auto md:top-0 md:bg-white xl:px-20`}
         >
           {/* MEDIUM ALTERNATIVE HEADER */}
-          <div className="relative hidden w-full md:block">
+          <div className="relative m-auto hidden w-full md:block lg:w-[1024px] lg:px-6 xl:w-[1280px]">
             <div className="flex items-center md:justify-between">
               {/* LOGO */}
               <div

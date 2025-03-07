@@ -1,0 +1,10 @@
+#commentModal.open {
+  z-index: 100; 
+  opacity: 1;
+}
+
+#commentModal.close {
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0) ;
+}
