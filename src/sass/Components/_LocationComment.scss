@@ -8,3 +8,9 @@
   opacity: 0;
   transform: scale(0) ;
 }
+
+#commentModal {
+  .closeButton {
+    flex: 0 0 72px;
+  }
+}

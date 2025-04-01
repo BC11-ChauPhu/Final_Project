@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { http } from "../service/config";
 import { FaStar } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import defaultUser from "../assets/img/user.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -145,12 +146,93 @@ const LocationComments = ({ localeId, reloadComments }) => {
 					)}
 					{/* COMMENT MODAl */}
 					<div
-						className={`fixed top-0 left-0 flex h-dvh w-full ${commentModal ? "open" : "close"}`}
+						className={`fixed justify-center items-center top-0 left-0 flex h-screen w-full ${commentModal ? "open" : "close"} bg-black/50 p-10`}
 						id="commentModal"
 						onClick={() => closeCommentModal()}
 					>
-						<div onClick={(e) => e.stopPropagation()}>
-							<div>Comments</div>
+						<div
+							onClick={(e) => e.stopPropagation()}
+							className="bg-white h-full gap-0 rounded-xl flex flex-col"
+						>
+							{/* CLOSE BUTTON */}
+							<div
+								className="flex closeButton px-10 relative hover:cursor-pointer"
+								onClick={() => setCommentModal(false)}
+							>
+								<div className="absolute top-10 left-10">
+									<IoMdClose className="h-6 w-6" />
+								</div>
+							</div>
+							{/* MODALS CONTENT */}
+							<div className="pl-10 pt-10 pb-10 flex gap-8 h-full">
+								{/* MODAL RIGHT */}
+								<div className="grid flex-1 h-full overflow-hidden">
+									<div>
+										<p className="flex items-center gap-1 font-semibold  justify-start  text-2xl pr-8 ">
+											<span className="flex gap-1 items-center">
+												<FaStar className="h-4 w-4 text-brand" />{" "}
+												{aRatings.toFixed(1)}
+											</span>
+											<span>·</span>
+											<span className="">{reviews} reviews</span>
+										</p>
+									</div>
+									{/* MODAL RIGH MAIN */}
+									<div className=" grid gap-8 overflow-y-auto max-h-[70vh] pt-10">
+										{comment.map((item, index) => (
+											<div className="mx-2 min-w-64 md:m-0" key={item.id}>
+												<div className="my-6 flex h-60 flex-col justify-between rounded-xl border border-gray-300 p-5 shadow-xl md:m-0 md:h-full md:flex-col-reverse md:gap-2 md:border-transparent md:p-0 md:shadow-none">
+													{/* COMMENT-TEXT */}
+													<div>
+														<div className="flex items-center md:text-sm">
+															<div className="flex">
+																{Array.from(
+																	{ length: item.saoBinhLuan },
+																	(_, index) => (
+																		<span key={index}>
+																			<FaStar className="h-[14px] w-[14px] text-brand" />
+																		</span>
+																	),
+																)}
+															</div>
+															<div className="px-2"> · </div>
+															<div>
+																{formatDateToMonthDay(item.ngayBinhLuan)}
+															</div>
+														</div>
+														<div>
+															{item.noiDung.length < 50 && (
+																<p>
+																	{item.noiDung
+																		? item.noiDung
+																		: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, natus."}
+																</p>
+															)}
+														</div>
+													</div>
+													{/* AVATAR */}
+													<div>
+														<div className="flex items-center gap-4">
+															<div
+																className="h-12 min-w-12 rounded-full border border-gray-500 bg-cover bg-center bg-no-repeat"
+																style={{
+																	backgroundImage: `url(${item.avatar ? item.avatar : defaultUser})`,
+																}}
+															></div>
+															<div>
+																<p className="text-sm font-semibold capitalize">
+																	{item.tenNguoiBinhLuan}
+																</p>
+																<p className="text-sm">4 months on Airbnb</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										))}
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</>

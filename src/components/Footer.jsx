@@ -5,22 +5,26 @@ import { FaInstagram } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
 const Footer = () => {
-	const [isSelectedLocation, setIsSelectedLocation] = useState(false);
+	const [isLocationDeatail, setIsLocationDetail] = useState(false);
 
 	useEffect(() => {
-		if (location.pathname.includes("/selectedLocation")) {
-			setIsSelectedLocation(true);
+		if (location.pathname.includes("/location/detail")) {
+			setIsLocationDetail(true);
 		} else {
-			setIsSelectedLocation(false);
+			setIsLocationDetail(false);
 		}
-	}, [location]);
+	});
+
+	console.log(isLocationDeatail);
 
 	return (
 		<section
-			className={`bg-gray-100 text-black border border-t-gray-300 ${isSelectedLocation ? "lg:w-[1080px] xl:w-[1280px]" : ""}`}
+			className={`bg-gray-100 text-black border border-t-gray-300 `}
 			id="footer"
 		>
-			<div className=" m-auto md:px-6 xl:px-20">
+			<div
+				className={`${isLocationDeatail ? "lg:w-[1080px] xl:w-[1280px] xl:!px-6" : ""} mx-auto m-auto md:px-6 xl:px-20 `}
+			>
 				<div className="grid gap-y-6 py-6 md:grid-cols-4 md:gap-x-4">
 					<div className="">
 						<h2 className="mb-2 font-semibold">Introduction</h2>{" "}
