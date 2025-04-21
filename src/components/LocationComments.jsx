@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { http } from "../service/config";
 import { FaStar } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -17,16 +17,25 @@ const LocationComments = ({ localeId, reloadComments }) => {
 	const aRatings = useSelector((state) => state.averageRating.rating);
 	const reviews = useSelector((state) => state.averageRating.reviews);
 
-	const fetchData = async () => {
+	const fetchData = useCallback(async () => {
 		try {
 			const res = await http.get(
 				`/api/binh-luan/lay-binh-luan-theo-phong/${localeId}`,
 			);
 			setComment(res.data.content);
+			console.log(res.data.content);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
-	};
+	}, [localeId]);
+
+	useEffect(() => {
+		console.log("This hook was used!");
+		fetchData();
+		if (reloadComments) {
+			fetchData();
+		}
+	}, [fetchData, reloadComments]);
 
 	const formatDateToMonthDay = (dateString) => {
 		const date = new Date(dateString);
@@ -60,15 +69,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 				dispatch(setReviews(validComments.length));
 			}
 		}
-	}, [comment]);
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
-	useEffect(() => {
-		fetchData();
-	}, [reloadComments]);
+	}, [comment, dispatch]);
 
 	return (
 		<>
@@ -94,7 +95,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 												{Array.from(
 													{ length: item.saoBinhLuan },
 													(_, index) => (
-														<span key={index}>
+														<span key={`${item.id} - ${index}`}>
 															<FaStar className="h-[14px] w-[14px] text-brand" />
 														</span>
 													),
@@ -121,7 +122,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 												style={{
 													backgroundImage: `url(${item.avatar ? item.avatar : defaultUser})`,
 												}}
-											></div>
+											/>
 											<div>
 												<p className="text-sm font-semibold capitalize">
 													{item.tenNguoiBinhLuan}
@@ -146,39 +147,37 @@ const LocationComments = ({ localeId, reloadComments }) => {
 					)}
 					{/* COMMENT MODAl */}
 					<div
-						className={`fixed justify-center items-center top-0 left-0 flex h-screen w-full ${commentModal ? "open" : "close"} bg-black/50 p-10`}
+						className={`fixed lg:justify-center items-center top-0 left-0 flex h-full w-full ${commentModal ? "open" : "close"} bg-black/50 md:p-10`}
 						id="commentModal"
 						onClick={() => closeCommentModal()}
 					>
 						<div
 							onClick={(e) => e.stopPropagation()}
-							className="bg-white h-full gap-0 rounded-xl flex flex-col"
+							className="bg-white h-full gap-0 lg:rounded-xl flex flex-col"
 						>
 							{/* CLOSE BUTTON */}
 							<div
-								className="flex closeButton px-10 relative hover:cursor-pointer"
+								className="flex closeButton pl-6 lg:px-10 relative hover:cursor-pointer"
 								onClick={() => setCommentModal(false)}
 							>
-								<div className="absolute top-10 left-10">
-									<IoMdClose className="h-6 w-6" />
+								<div className="absolute left-6 top-4 lg:top-10 lg:left-10">
+									<IoMdClose className="h-4 w-4 lg:h-6 lg:w-6" />
 								</div>
 							</div>
 							{/* MODALS CONTENT */}
-							<div className="pl-10 pt-10 pb-10 flex gap-8 h-full">
-								{/* MODAL RIGHT */}
-								<div className="grid flex-1 h-full overflow-hidden">
-									<div>
-										<p className="flex items-center gap-1 font-semibold  justify-start  text-2xl pr-8 ">
-											<span className="flex gap-1 items-center">
-												<FaStar className="h-4 w-4 text-brand" />{" "}
-												{aRatings.toFixed(1)}
-											</span>
-											<span>·</span>
-											<span className="">{reviews} reviews</span>
-										</p>
-									</div>
-									{/* MODAL RIGH MAIN */}
-									<div className=" grid gap-8 overflow-y-auto max-h-[70vh] pt-10">
+							<div>
+								<div>
+									<p className="flex items-center gap-1 font-semibold  justify-start  text-2xl pr-8 pb-8 ">
+										<span className="flex gap-1 items-center">
+											<FaStar className="h-4 w-4 text-brand" />{" "}
+											{aRatings.toFixed(1)}
+										</span>
+										<span>·</span>
+										<span className="">{reviews} reviews</span>
+									</p>
+								</div>
+								<div className="pl-6 lg:pl-10 lg:pt-10 overflow-y-auto flex gap-8 ">
+									<div className=" grid gap-8 overflow-y-scroll w-full rounded-xl pr-6">
 										{comment.map((item, index) => (
 											<div className="mx-2 min-w-64 md:m-0" key={item.id}>
 												<div className="my-6 flex h-60 flex-col justify-between rounded-xl border border-gray-300 p-5 shadow-xl md:m-0 md:h-full md:flex-col-reverse md:gap-2 md:border-transparent md:p-0 md:shadow-none">
@@ -189,7 +188,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 																{Array.from(
 																	{ length: item.saoBinhLuan },
 																	(_, index) => (
-																		<span key={index}>
+																		<span key={`${item.id} - ${index}`}>
 																			<FaStar className="h-[14px] w-[14px] text-brand" />
 																		</span>
 																	),
@@ -218,7 +217,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 																style={{
 																	backgroundImage: `url(${item.avatar ? item.avatar : defaultUser})`,
 																}}
-															></div>
+															/>
 															<div>
 																<p className="text-sm font-semibold capitalize">
 																	{item.tenNguoiBinhLuan}
@@ -237,7 +236,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 					</div>
 				</>
 			) : (
-				<div className="px-6 pt-6">
+				<div className="py-6 pt-6 xl:w-[1240px] m-auto ">
 					<h1 className="text-lg font-bold">Comments</h1>
 					<p>There are no comments</p>
 				</div>
