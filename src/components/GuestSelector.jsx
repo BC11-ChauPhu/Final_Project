@@ -20,7 +20,7 @@ const GuestSelector = () => {
 
   useEffect(() => {
     dispatch(setGuests(guest));
-  }, [guest]);
+  }, [guest, dispatch]);
 
   return (
     <div

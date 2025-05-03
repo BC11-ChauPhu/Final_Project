@@ -23,14 +23,13 @@ const LocationComments = ({ localeId, reloadComments }) => {
 				`/api/binh-luan/lay-binh-luan-theo-phong/${localeId}`,
 			);
 			setComment(res.data.content);
-			console.log(res.data.content);
 		} catch (err) {
 			console.error(err);
 		}
 	}, [localeId]);
 
 	useEffect(() => {
-		console.log("This hook was used!");
+		/* console.log("This hook was used!"); */
 		fetchData();
 		if (reloadComments) {
 			fetchData();
@@ -138,6 +137,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 					{comment?.length > visibleComments && (
 						<div className="xl:w-[1280px] xl:mx-auto px-6 mt-6 font-semibold">
 							<button
+								type="button"
 								className="px-6 py-3 border border-black rounded-lg hover:bg-gray-100 transition-all duration-300"
 								onClick={() => openCommentModal()}
 							>
@@ -147,27 +147,34 @@ const LocationComments = ({ localeId, reloadComments }) => {
 					)}
 					{/* COMMENT MODAl */}
 					<div
-						className={`fixed lg:justify-center items-center top-0 left-0 flex h-full w-full ${commentModal ? "open" : "close"} bg-black/50 md:p-10`}
+						className={`fixed md:justify-center items-center top-0 left-0 flex h-full w-full ${commentModal ? "open" : "close"} bg-black/50 md:p-10`}
 						id="commentModal"
 						onClick={() => closeCommentModal()}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === " ") closeCommentModal();
+						}}
 					>
 						<div
 							onClick={(e) => e.stopPropagation()}
-							className="bg-white h-full gap-0 lg:rounded-xl flex flex-col"
+							onKeyDown={(e) => {
+								if (e.key === "Enter" || e.key === " ") closeCommentModal();
+							}}
+							className="bg-white h-full gap-0 md:rounded-xl flex flex-col overflow-y-hidden"
 						>
 							{/* CLOSE BUTTON */}
-							<div
-								className="flex closeButton pl-6 lg:px-10 relative hover:cursor-pointer"
+							<button
+								type="button"
+								className="flex closeButton pl-6 md:px-6 lg:px-10 relative hover:cursor-pointer"
 								onClick={() => setCommentModal(false)}
 							>
 								<div className="absolute left-6 top-4 lg:top-10 lg:left-10">
 									<IoMdClose className="h-4 w-4 lg:h-6 lg:w-6" />
 								</div>
-							</div>
+							</button>
 							{/* MODALS CONTENT */}
-							<div>
-								<div>
-									<p className="flex items-center gap-1 font-semibold  justify-start  text-2xl pr-8 pb-8 ">
+							<div className="  md:px-6 lg:px-10 overflow-y-auto">
+								<div className="border border-b-gray-300 border-t-transparent border-l-transparent border-r-transparent md:pb-4">
+									<p className="flex items-center gap-1 font-semibold  justify-start text-2xl pr-8 ">
 										<span className="flex gap-1 items-center">
 											<FaStar className="h-4 w-4 text-brand" />{" "}
 											{aRatings.toFixed(1)}
@@ -176,8 +183,8 @@ const LocationComments = ({ localeId, reloadComments }) => {
 										<span className="">{reviews} reviews</span>
 									</p>
 								</div>
-								<div className="pl-6 lg:pl-10 lg:pt-10 overflow-y-auto flex gap-8 ">
-									<div className=" grid gap-8 overflow-y-scroll w-full rounded-xl pr-6">
+								<div className="lg:pb-8 md:pt-4 overflow-y-hidden flex gap-8 ">
+									<div className=" grid gap-8 rounded-xl pr-6 overflow-y-auto">
 										{comment.map((item, index) => (
 											<div className="mx-2 min-w-64 md:m-0" key={item.id}>
 												<div className="my-6 flex h-60 flex-col justify-between rounded-xl border border-gray-300 p-5 shadow-xl md:m-0 md:h-full md:flex-col-reverse md:gap-2 md:border-transparent md:p-0 md:shadow-none">

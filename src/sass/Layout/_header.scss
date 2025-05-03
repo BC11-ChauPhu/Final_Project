@@ -1,31 +1,38 @@
 .header {
   height: $header;
+
   @media (min-width: 768px) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   #headerLogo {
-    flex: 1 0 140px;
+    @media (min-width: 1240px) {
+      flex: 1 0 140px;
+    }
   }
 
   #headerRight {
-    flex: 1 0 140px;
+    @media (min-width: 1240px) {
+      flex: 1 0 140px;
+    }
   }
 
   .links {
     &.active {
-      color: black;
-      font-weight: bold;
+      color: rgba(0, 0, 0, 0.8);
+      font-weight: 500;
     }
   }
 
   &.active {
-    @media (min-width: 768px) {
-      height: 80px;
-    }
     background: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 14px 11px 12px 0px rgba(0, 0, 0, 0.2);
+
+    @media (min-width: 768px) {
+      height: 80px;
+    }
+
   }
 
   #mdPopUp {

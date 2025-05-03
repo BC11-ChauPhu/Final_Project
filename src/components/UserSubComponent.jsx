@@ -23,6 +23,9 @@ const UserSubComponent = ({ userData }) => {
         <div
           className="cursor-pointer text-center underline"
           onClick={() => handleUpdateProfileClick()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") handleUpdateProfileClick();
+          }}
         >
           Update your profile
         </div>

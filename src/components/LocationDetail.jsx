@@ -120,14 +120,12 @@ const LocationDetail = () => {
 			}
 		};
 		fetchData();
-	}, []);
-
-	useEffect(() => {}, [dateRange]);
+	}, [id]);
 
 	return (
-		<section className="relative mb-12">
+		<section className="relative  ">
 			{/* IMAGE */}
-			<div className="flex flex-col md:flex-col-reverse md:pb-8 md:pt-14 lg:mx-auto lg:w-[1024] xl:w-[1280px]">
+			<div className="flex flex-col md:flex-col-reverse md:pb-8 md:pt-14 lg:mx-auto lg:w-[1024px] xl:w-[1280px]">
 				<div className="h-72 md:h-80 md:px-6 lg:h-[489px]">
 					<img
 						src={room.hinhAnh}
@@ -154,9 +152,9 @@ const LocationDetail = () => {
 				</div>
 			</div>
 			{/* CONTENT */}
-			<div className="relative flex flex-col space-y-4  px-6 text-sm md:flex-row md:space-y-0 md:text-base lg:mx-auto lg:w-[1024] xl:w-[1280px] ">
+			<div className="relative flex flex-col space-y-4  px-6 text-sm md:flex-row md:space-y-0 md:text-base lg:mx-auto lg:w-[1024px] xl:w-[1280px] ">
 				{/* LEFT CONTENT */}
-				<div className="flex flex-col md:w-[65%] z-0 relative overflow-y-auto">
+				<div className="flex flex-col md:w-[65%] z-0 relative ">
 					{/* ROOMS NUMBER */}
 					<div className="flex flex-col pb-6">
 						<div>
@@ -312,8 +310,8 @@ const LocationDetail = () => {
 					</div>
 				</div>
 				{/* RIGHT CONTENT */}
-				<div className="relative hidden  md:ml-[8.5%] md:block md:w-[35%]">
-					<div className="sticky top-14 flex flex-col rounded-xl border border-gray-300 p-6 shadow-lg">
+				<div className="relative hidden md:ml-[8.5%] md:block md:w-[35%] ">
+					<div className="sticky top-28 flex flex-col rounded-xl border border-gray-300 p-6 shadow-lg">
 						<div className="mb-6">
 							<p>
 								<span className="text-2xl font-semibold">${room.giaTien}</span>{" "}
@@ -325,6 +323,11 @@ const LocationDetail = () => {
 							<div
 								className="flex text-left text-[0.625rem]"
 								onClick={() => setCalendar((prev) => !prev)}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") {
+										setCalendar((prev) => !prev);
+									}
+								}}
 							>
 								<div className="w-1/2">
 									<div className="w-full">
@@ -333,19 +336,19 @@ const LocationDetail = () => {
 											<span className="overflow-ellipsis whitespace-nowrap text-base text-[0.875rem] ">
 												{roomReservationDate
 													? `${roomReservationDate.start}`
-													: `Add date`}
+													: "Add date"}
 											</span>
 										</div>
 									</div>
 								</div>
 								<div className="w-1/2">
-									<button className="w-full">
+									<button type="button" className="w-full">
 										<div className="flex flex-col rounded-tr-xl border border-gray-400 border-l-transparent px-2 py-2 text-left">
 											<span className="font-bold">CHECK-OUT</span>
 											<span className="overflow-ellipsis whitespace-nowrap text-base">
 												{roomReservationDate
 													? `${roomReservationDate.end}`
-													: `Add date`}
+													: "Add date"}
 											</span>
 										</div>
 									</button>
@@ -368,12 +371,18 @@ const LocationDetail = () => {
 										onClick={() => {
 											decreaseGuests();
 										}}
+										onKeyDown={(e) => {
+											if (e.key === "Enter" || e.key === " ") decreaseGuests();
+										}}
 									>
 										<CiCircleMinus />
 									</p>
 									<p
 										onClick={() => {
 											increaseGuests();
+										}}
+										onKeyDown={(e) => {
+											if (e.key === "Enter" || e.key === " ") increaseGuests();
 										}}
 									>
 										<CiCirclePlus />
@@ -385,6 +394,7 @@ const LocationDetail = () => {
 						<div className="mt-6 flex justify-center">
 							<div className="w-full">
 								<button
+									type="button"
 									className="w-full rounded-xl bg-brand px-6 py-3 font-semibold text-white"
 									onClick={() => {
 										handleReserve();
@@ -428,7 +438,13 @@ const LocationDetail = () => {
 												<span className="font-normal"> /night</span>
 											</p>
 										</div>
-										<div onClick={handleDateSelection}>
+										<div
+											onClick={handleDateSelection}
+											onKeyDown={(e) => {
+												if (e.key === "Enter" || e.key === " ")
+													handleDateSelection();
+											}}
+										>
 											{dateRange
 												? `${formatDateToMonthDay(dateRange.start)} - ${formatDateToMonthDay(dateRange.end)}`
 												: "Select a date"}
@@ -456,6 +472,11 @@ const LocationDetail = () => {
 										onClick={() => {
 											handleReserve();
 										}}
+										onKeyDown={(e) => {
+											if (e.key === "Enter" || e.key === "") {
+												handleReserve();
+											}
+										}}
 									>
 										<span>Reserve</span>
 									</div>
@@ -469,8 +490,20 @@ const LocationDetail = () => {
 				id="calendarModal"
 				className={`fixed top-0 h-dvh items-center overflow-auto bg-black/50 transition-all duration-500 ${isModalOpen ? "open" : "close"}`}
 				onClick={closeModal}
+				onKeyDown={(e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						closeModal();
+					}
+				}}
 			>
-				<div onClick={(e) => e.stopPropagation()}>
+				<div
+					onClick={(e) => e.stopPropagation()}
+					onKeyDown={(e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							e.stopPropagation();
+						}
+					}}
+				>
 					<Calendar />
 				</div>
 			</div>

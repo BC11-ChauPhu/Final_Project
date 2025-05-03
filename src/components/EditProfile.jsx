@@ -89,7 +89,10 @@ const EditProfile = ({ editing, onClick, userData }) => {
                 </div>
               </div>
             </div>
-            <button className="mt-4 rounded-md bg-brand px-4 py-1 text-base font-bold text-white">
+            <button
+              className="mt-4 rounded-md bg-brand px-4 py-1 text-base font-bold text-white"
+              type="button"
+            >
               Save
             </button>
           </form>

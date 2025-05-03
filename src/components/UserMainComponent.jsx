@@ -19,7 +19,7 @@ const UserMainComponent = ({ userData }) => {
       }
     };
     getRoom();
-  }, []);
+  }, [userData.id]);
 
   useEffect(() => {
     if (room.length > 0) {
@@ -55,13 +55,18 @@ const UserMainComponent = ({ userData }) => {
         {/* CONTENT */}
         <div className="grid gap-4 text-sm lg:text-base">
           {roomInfo.map((item, index) => (
-            <div key={index}>
+            <div key={item.index}>
               <div className="relative flex flex-col gap-3 lg:flex-row">
                 {/* IMG */}
                 <div
                   className="relative max-h-56 lg:max-h-full lg:w-1/2"
                   onClick={() => {
                     navgiate(`/location/detail/${item.id}`);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      navgiate(`/location/detail/${item.id}`);
+                    }
                   }}
                 >
                   <div className="h-full">

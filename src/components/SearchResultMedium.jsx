@@ -11,7 +11,7 @@ const SearchResultMedium = ({ filteredList, onLocationSelect }) => {
         filteredList?.map((item, index) => (
           <div
             className="cursor:pointer flex gap-4 rounded-lg px-4 py-2 hover:bg-gray-200"
-            key={index}
+            key={item.id}
             onClick={() =>
               onLocationSelect(
                 item.tenViTri,
@@ -20,6 +20,16 @@ const SearchResultMedium = ({ filteredList, onLocationSelect }) => {
                 item.id,
               )
             }
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                onLocationSelect(
+                  item.tenViTri,
+                  item.tinhThanh,
+                  item.quocGia,
+                  item.id,
+                );
+              }
+            }}
           >
             <div className="grid h-12 flex-[0_0_48px] items-center justify-center rounded-xl bg-gray-300 text-center">
               <HiOutlineLocationMarker className="block h-[22px] w-[22px]" />

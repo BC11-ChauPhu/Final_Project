@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { setDate } from "../features/dateSelection/dateSelectSlice";
@@ -72,12 +72,12 @@ const Calendar = () => {
 		setCurrentDate(newDate);
 	};
 
-	const isPreviousButtonDisabled = () => {
+	const isPreviousButtonDisabled = useCallback(() => {
 		return (
 			currentDate.getFullYear() === today.getFullYear() &&
 			currentDate.getMonth() === today.getMonth()
 		);
-	};
+	});
 
 	const handleDateSelect = (day, month, year) => {
 		if (!day) return;
@@ -110,7 +110,10 @@ const Calendar = () => {
 
 	useEffect(() => {
 		setPrevButton(!isPreviousButtonDisabled());
-	}, [currentDate]);
+		if (currentDate) {
+			setPrevButton(!isPreviousButtonDisabled());
+		}
+	}, [currentDate, isPreviousButtonDisabled]);
 
 	return (
 		<>
@@ -127,13 +130,13 @@ const Calendar = () => {
 					</h2>
 					<div className="grid grid-cols-7 gap-1 text-center text-sm">
 						{["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, index) => (
-							<div key={index} className="text-gray-500">
+							<div key={`${index + 1}`} className="text-gray-500">
 								{day}
 							</div>
 						))}
 						{currentMonthDays.map((day, index) => (
 							<div
-								key={index}
+								key={`${currentDate.getMonth}-${index}`}
 								className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""} ${startDate && endDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) >= startDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""} `}
 								onClick={() =>
 									handleDateSelect(
@@ -142,6 +145,15 @@ const Calendar = () => {
 										currentDate.getFullYear(),
 									)
 								}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") {
+										handleDateSelect(
+											day,
+											currentDate.getMonth(),
+											currentDate.getFullYear(),
+										);
+									}
+								}}
 							>
 								{day}
 							</div>
@@ -160,14 +172,14 @@ const Calendar = () => {
 						</h2>
 					</div>
 					<div className="grid grid-cols-7 gap-1 text-center text-sm">
-						{["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-							<div key={day} className="text-gray-500">
+						{["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, index) => (
+							<div key={`${day} `} className="text-gray-500">
 								{day}
 							</div>
 						))}
 						{nextMonthDays.map((day, index) => (
 							<div
-								key={index}
+								key={`${nextMonthDate.getMonth}-${index}`}
 								className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""} ${startDate && endDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) >= startDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""}`}
 								onClick={() =>
 									handleDateSelect(
@@ -176,6 +188,15 @@ const Calendar = () => {
 										nextMonthDate.getFullYear(),
 									)
 								}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") {
+										handleDateSelect(
+											day,
+											nextMonthDate.getMonth(),
+											nextMonthDate.getFullYear(),
+										);
+									}
+								}}
 							>
 								{day}
 							</div>

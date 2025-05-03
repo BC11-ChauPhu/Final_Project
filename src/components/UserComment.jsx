@@ -55,7 +55,7 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
         style={{
           backgroundImage: `url(${userData.avatar ? userData.avatar : defaultUser})`,
         }}
-      ></div>
+      />
       {/* FORM */}
       <div>
         <form onSubmit={handleComment}>
@@ -70,7 +70,7 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
             onChange={(e) => {
               setComment(e.target.value);
             }}
-          ></textarea>
+          />
           <button
             className="mt-2 rounded-lg bg-blue-500 px-4 py-2 text-white"
             type="submit"
