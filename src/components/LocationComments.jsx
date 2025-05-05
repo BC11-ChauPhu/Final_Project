@@ -184,7 +184,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 									</p>
 								</div>
 								<div className="lg:pb-8 md:pt-4 overflow-y-hidden flex gap-8 ">
-									<div className=" grid gap-8 rounded-xl pr-6 overflow-y-auto">
+									<div className=" grid gap-8 rounded-xl pl-6 md:pl-0 pr-6 overflow-y-auto">
 										{comment.map((item, index) => (
 											<div className="mx-2 min-w-64 md:m-0" key={item.id}>
 												<div className="my-6 flex h-60 flex-col justify-between rounded-xl border border-gray-300 p-5 shadow-xl md:m-0 md:h-full md:flex-col-reverse md:gap-2 md:border-transparent md:p-0 md:shadow-none">

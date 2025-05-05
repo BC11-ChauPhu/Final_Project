@@ -149,7 +149,7 @@ const Header = () => {
 								id="headerRight"
 								className="relative flex items-center justify-end gap-4"
 							>
-								<p className="hidden <md:text-xsm></md:text-xsm> lg:text-base  md:block">
+								<p className="hidden md:text-sm lg:text-base md:block">
 									Airbnb your home
 								</p>
 								<span className="hidden text-xl font-semibold md:block">

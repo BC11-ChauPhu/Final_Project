@@ -54,7 +54,7 @@ const SelectedLocation = () => {
 			<div className=" pb-6 md:pl-6 xl:pl-20">
 				{/* CONTENT */}
 				<div
-					className={`content relative md:overflow-y-scroll ${Number.isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} mt-16 grid`}
+					className={`content relative md:overflow-y-scroll ${Number.isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} md:mt-16 grid px-6 md:px-0`}
 				>
 					<div
 						className={`${id && !Number.isNaN(Number(id)) ? "md:mr-6" : ""} pb-6`}
@@ -65,7 +65,7 @@ const SelectedLocation = () => {
 							</p>
 						</div>
 						<div
-							className={`grid gap-6 xl:gap-10 ${Number.isNaN(Number(id)) ? "lg:grid-cols-3 xl:grid-cols-5" : "lg:grid-cols-2"} grid-cols-1 md:grid-cols-2`}
+							className={`grid gap-6 xl:gap-10 ${Number.isNaN(Number(id)) ? "lg:grid-cols-3 xl:grid-cols-5" : "lg:grid-cols-2"} grid-cols-1 md:grid-cols-1`}
 						>
 							{location
 								?.filter((item) => {

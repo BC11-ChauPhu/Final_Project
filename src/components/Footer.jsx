@@ -23,7 +23,7 @@ const Footer = () => {
 			id="footer"
 		>
 			<div
-				className={`${isLocationDeatail ? "lg:w-[1080px] xl:w-[1280px] xl:!px-6" : ""} mx-auto m-auto md:px-6 xl:px-20 `}
+				className={`${isLocationDeatail ? "lg:w-[1080px] xl:w-[1280px] xl:!px-6" : ""} mx-auto m-auto px-6 md:px-6 xl:px-20 `}
 			>
 				<div className="grid gap-y-6 py-6 md:grid-cols-4 md:gap-x-4">
 					<div className="">

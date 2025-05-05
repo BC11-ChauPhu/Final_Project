@@ -11,56 +11,56 @@ import UserTemplate from "../templates/UserTemplate";
 import UserPage from "../pages/UserPage";
 
 const useCustomRoutes = (showPopUpSearch, togglePopUp) => {
-  const myRoutes = useRoutes([
-    {
-      path: "",
-      element: <HomeTemplate showPopUpSearch={showPopUpSearch} />,
-      children: [
-        {
-          index: true,
-          element: (
-            <HomePage
-              showPopUpSearch={showPopUpSearch}
-              togglePopUp={togglePopUp}
-            />
-          ),
-        },
-      ],
-    },
-    {
-      path: "location",
-      element: <LocationTemplate />,
-      children: [
-        {
-          path: "selectedLocation/:id",
-          element: <SelectedLocationPage />,
-        },
-        {
-          path: `detail/:id`,
-          element: <LocationDetailPage />,
-        },
-      ],
-    },
-    {
-      path: "/sign-in",
-      element: <SignInPage />,
-    },
-    {
-      path: "/register",
-      element: <RegisterPage />,
-    },
-    {
-      path: "/profile",
-      element: <UserTemplate />,
-      children: [
-        {
-          path: `user/:id`,
-          element: <UserPage />,
-        },
-      ],
-    },
-  ]);
-  return myRoutes;
+	const myRoutes = useRoutes([
+		{
+			path: "",
+			element: <HomeTemplate showPopUpSearch={showPopUpSearch} />,
+			children: [
+				{
+					index: true,
+					element: (
+						<HomePage
+							showPopUpSearch={showPopUpSearch}
+							togglePopUp={togglePopUp}
+						/>
+					),
+				},
+			],
+		},
+		{
+			path: "location",
+			element: <LocationTemplate />,
+			children: [
+				{
+					path: "selectedLocation/:id",
+					element: <SelectedLocationPage />,
+				},
+				{
+					path: "detail/:id",
+					element: <LocationDetailPage />,
+				},
+			],
+		},
+		{
+			path: "/sign-in",
+			element: <SignInPage />,
+		},
+		{
+			path: "/register",
+			element: <RegisterPage />,
+		},
+		{
+			path: "/profile",
+			element: <UserTemplate />,
+			children: [
+				{
+					path: "user/:id",
+					element: <UserPage />,
+				},
+			],
+		},
+	]);
+	return myRoutes;
 };
 
 export default useCustomRoutes;
