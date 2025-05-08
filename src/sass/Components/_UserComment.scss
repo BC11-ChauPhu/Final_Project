@@ -1,0 +1,22 @@
+#userComment {
+  #userRating {
+    display: flex;
+    gap: 4px;
+
+    li {
+      color: gray;
+
+      svg {
+        height: 20px;
+        width: 20px;
+        opacity: 0.3;
+        transition: opacity 0.2s ease, color 0.2s ease;
+
+        &:hover {
+          color: $brand-color;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

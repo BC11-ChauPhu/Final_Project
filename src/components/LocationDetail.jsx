@@ -21,11 +21,11 @@ import { FaRegShareFromSquare } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa6";
 import Calendar from "./Calendar.jsx";
 import { useSelector } from "react-redux";
-import defaultUser from "../assets/img/user.jpg";
 import { BsDoorOpen } from "react-icons/bs";
 import { BsHouseHeart } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 const LocationDetail = () => {
 	const { id } = useParams();
@@ -180,11 +180,7 @@ const LocationDetail = () => {
 					<div className="border-b border-t border-b-gray-300 border-t-gray-300">
 						<div className="flex gap-4 py-6">
 							<div>
-								<img
-									src={defaultUser}
-									alt=""
-									className="h-10 w-10 rounded-full border border-black"
-								/>
+								<FaUserCircle className="h-10 w-10" />
 							</div>
 							<div>
 								<p className="text-base font-semibold">Hosted by user</p>

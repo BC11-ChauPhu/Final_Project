@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import defaultUser from "../assets/img/user.jpg";
 import { http } from "../service/config";
 import { toast } from "react-toastify";
+import { FaUserCircle } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 const UserComment = ({ userData, roomData, onCommentAdded }) => {
 	const [comment, setComment] = useState("");
 	const generateRandomId = () => Math.floor(Math.random() * 10000);
 	const token = localStorage.getItem("authToken");
 	const currentDate = new Date();
+	const [commentRating, setCommentRating] = useState(0);
 
 	const handleComment = (event) => {
 		event.preventDefault();
@@ -22,7 +25,7 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
 						maNguoiBinhLuan: userData.id,
 						ngayBinhLuan: currentDate,
 						noiDung: comment,
-						saoBinhLuan: 4,
+						saoBinhLuan: commentRating,
 					},
 					{
 						headers: {
@@ -48,19 +51,75 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
 	};
 
 	return (
-		<div className="  my-10 gap-5 px-6 md:px-0 md:flex w-full mx-auto lg:w-[1024px] xl:w-[1240px]">
+		<div
+			className="py-6 gap-4 px-6 md:px-0 md:grid w-full mx-auto lg:w-[1024px] xl:w-[1240px] border-t border-t-gray-300"
+			id="userComment"
+		>
 			{/* AVATAR */}
-			<div
-				className="hidden h-12 min-w-12 rounded-full border border-gray-500 bg-cover bg-center bg-no-repeat md:block"
-				style={{
-					backgroundImage: `url(${userData.avatar ? userData.avatar : defaultUser})`,
-				}}
-			/>
+			<div className="flex items-center gap-4">
+				<div className="hidden h-12 rounded-full md:block w-12">
+					{userData.avatar ? (
+						<img
+							src={userData.avatar ? userData.avatar : FaUserCircle}
+							alt=""
+							className="object-cover"
+						/>
+					) : (
+						<FaUserCircle className="h-12 w-12" />
+					)}
+				</div>
+				<div className="font-bold">{userData.name}</div>
+			</div>
+			<div>
+				<ul id="userRating">
+					<li
+						onClick={() => setCommentRating(1)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === "") setCommentRating(1);
+						}}
+					>
+						<FaStar />
+					</li>
+					<li
+						onClick={() => setCommentRating(2)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === "") setCommentRating(2);
+						}}
+					>
+						<FaStar />
+					</li>
+					<li
+						onClick={() => setCommentRating(3)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === "") setCommentRating(3);
+						}}
+					>
+						<FaStar />
+					</li>
+					<li
+						onClick={() => setCommentRating(4)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === "") setCommentRating(4);
+						}}
+					>
+						<FaStar />
+					</li>
+					<li
+						onClick={() => setCommentRating(5)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === "") setCommentRating(5);
+						}}
+					>
+						<FaStar />
+					</li>
+				</ul>
+			</div>
+
 			{/* FORM */}
 			<div>
 				<form onSubmit={handleComment}>
 					<textarea
-						className="w-full border border-gray-500 p-2 rounded-lg  focus:outline-brand transition-all duration-300"
+						className="w-full border border-gray-400 p-2 rounded-lg  focus:outline-gray-600 transition-all duration-300"
 						placeholder="Add your comment..."
 						name="comment"
 						id="userComment"

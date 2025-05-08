@@ -53,7 +53,7 @@ const RegisterForm = () => {
       registerPhone: "",
       registerBirthday: "",
       registerGender: true,
-      registerRole: "",
+      registerRole: "ADMIN",
     },
     validate: registerValidate,
     onSubmit: registerFunc,
