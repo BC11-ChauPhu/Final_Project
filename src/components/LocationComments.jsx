@@ -3,7 +3,6 @@ import { http } from "../service/config";
 import { FaStar } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
-import defaultUser from "../assets/img/user.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	setAverageRating,
@@ -227,12 +226,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 														{/* AVATAR */}
 														<div>
 															<div className="flex items-center gap-4">
-																<div
-																	className="h-12 min-w-12 rounded-full border border-gray-500 bg-cover bg-center bg-no-repeat"
-																	style={{
-																		backgroundImage: `url(${item.avatar ? item.avatar : defaultUser})`,
-																	}}
-																/>
+																<div className="h-12 min-w-12 rounded-full border border-gray-500 bg-cover bg-center bg-no-repeat" />
 																<div>
 																	<p className="text-sm font-semibold capitalize">
 																		{item.tenNguoiBinhLuan}

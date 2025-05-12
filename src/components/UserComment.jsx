@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import defaultUser from "../assets/img/user.jpg";
 import { http } from "../service/config";
 import { toast } from "react-toastify";
 import { FaUserCircle } from "react-icons/fa";
