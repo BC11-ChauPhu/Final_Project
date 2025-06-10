@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 
 const Footer = () => {
 	const [isLocationDeatail, setIsLocationDetail] = useState(false);
+	const [isRegisterSignIn, setIsRegisterSignIn] = useState(false);
 
 	useEffect(() => {
-		if (location.pathname.includes("/location/detail")) {
-			/* setIsLocationDetail(true); */
-		} else {
-			/* setIsLocationDetail(false); */
+		if (location.pathname.includes("/sign-in")) {
+			setIsRegisterSignIn(true);
+		}
+		if (location.pathname.includes("/register")) {
+			setIsRegisterSignIn(true);
 		}
 	});
 
@@ -19,7 +21,7 @@ const Footer = () => {
 
 	return (
 		<section
-			className="bg-gray-100 text-black border border-t-gray-300"
+			className={`${isRegisterSignIn ? "hidden" : "block"} bg-gray-100 text-black border border-t-gray-300`}
 			id="footer"
 		>
 			<div

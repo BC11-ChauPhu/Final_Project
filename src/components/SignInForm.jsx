@@ -53,18 +53,18 @@ const SignInForm = () => {
   });
   return (
     <section className="z-10 flex w-full items-start justify-center transition-all">
-      <div className="max-w-lg rounded-lg bg-white px-14 pb-10 pt-16">
-        <div className="mb-6 flex flex-col justify-between gap-3">
-          <h4 className="text-center text-2xl font-semibold">
+      <div className="max-w-lg rounded-lg bg-white  pb-10 pt-3 md:pt-16">
+        <div className="mb-6 flex flex-col justify-between gap-3 px-8 border-b border-b-gray-200">
+          <h4 className="text-center text-2xl font-semibold pb-3 md:pb-0">
             Sign in with your account
           </h4>
-          <p className="text-center">
+          <p className="text-center hidden md:block">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
             animi?
           </p>
         </div>
 
-        <div>
+        <div className="px-8 md:p-0">
           <form onSubmit={signIn.handleSubmit}>
             <div className="mb-3">
               <label htmlFor="signInEmail">Email</label>

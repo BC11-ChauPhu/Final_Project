@@ -5,17 +5,27 @@
 
     li {
       color: gray;
+      opacity: 0.3;
+      transition: opacity 0.2s ease, color 0.2s ease;
+
+      &.active {
+        color: $brand-color;
+        opacity: 1
+      }
+
+      ;
 
       svg {
         height: 20px;
         width: 20px;
-        opacity: 0.3;
-        transition: opacity 0.2s ease, color 0.2s ease;
 
         &:hover {
           color: $brand-color;
           opacity: 1;
+          cursor: pointer
         }
+
+        ;
       }
     }
   }

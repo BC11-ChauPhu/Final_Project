@@ -96,7 +96,7 @@ const NearbyLocation = () => {
 											className="rounded-2xl"
 										>
 											<SwiperSlide>
-												<div className="relative md:h-80 lg:h-64">
+												<div className="relative h-80 lg:h-64">
 													<div className="h-full">
 														<img
 															className="block h-full w-full rounded-2xl object-cover"
@@ -124,7 +124,7 @@ const NearbyLocation = () => {
 												</div>
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="relative md:h-80 lg:h-64">
+												<div className="relative h-80 lg:h-64">
 													<div
 														className="h-full"
 														onClick={() => {
@@ -157,7 +157,7 @@ const NearbyLocation = () => {
 												</div>
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="relative md:h-80 lg:h-64">
+												<div className="relative h-80 lg:h-64">
 													<div
 														className="h-full"
 														onClick={() => {
@@ -190,7 +190,7 @@ const NearbyLocation = () => {
 												</div>
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="relative md:h-80 lg:h-64">
+												<div className="relative h-80 lg:h-64">
 													<div
 														className="h-full"
 														onClick={() => {
@@ -223,7 +223,7 @@ const NearbyLocation = () => {
 												</div>
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="relative md:h-80 lg:h-64">
+												<div className="relative h-80 lg:h-64">
 													<div
 														className="h-full"
 														onClick={() => {

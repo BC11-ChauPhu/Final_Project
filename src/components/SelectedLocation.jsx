@@ -51,7 +51,9 @@ const SelectedLocation = () => {
 
 	return (
 		<section id="selectedLocation">
-			<div className=" pb-6 md:pl-6 xl:pl-20">
+			<div
+				className={` pb-6 md:pl-6  ${id && !Number.isNaN(Number(id)) ? "xl:pl-20" : "md:px-6 xl:px-20"}`}
+			>
 				{/* CONTENT */}
 				<div
 					className={`content relative md:overflow-y-scroll ${Number.isNaN(Number(id)) ? "h-full grid-cols-1" : "md:grid-cols-2"} md:mt-16 grid px-6 md:px-0`}

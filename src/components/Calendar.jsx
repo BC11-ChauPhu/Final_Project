@@ -117,8 +117,8 @@ const Calendar = () => {
 
 	return (
 		<>
-			<div className="calendar top-16 z-10 mx-4 mt-3 grid max-h-[500px] justify-between overflow-y-scroll rounded-3xl border-gray-400 bg-white p-0 py-4 shadow-2xl md:absolute md:mx-0 md:flex md:w-full md:px-9">
-				<div className="w-full px-6 md:w-[49%]">
+			<div className="calendar top-16 z-10 mx-4 mt-3 grid grid-cols-1 md:grid-cols-2 max-h-[500px] justify-between overflow-y-scroll rounded-3xl border-gray-400 bg-white p-0 py-4 shadow-2xl md:absolute md:mx-0 md:flex md:w-full md:px-9">
+				<div className="w-full mx-auto px-6 md:w-[49%]">
 					<h2 className="relative flex items-center justify-around pb-8 pt-6 text-center font-semibold">
 						{getCurrentMonthYear()}
 						{prevButton && (
@@ -137,7 +137,7 @@ const Calendar = () => {
 						{currentMonthDays.map((day, index) => (
 							<div
 								key={`${currentDate.getMonth}-${index}`}
-								className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""} ${startDate && endDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) >= startDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""} `}
+								className={`calendar-day grid xl:h-12 xl:w-12 w-8 h-8 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""} ${startDate && endDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) >= startDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""} `}
 								onClick={() =>
 									handleDateSelect(
 										day,
@@ -180,7 +180,7 @@ const Calendar = () => {
 						{nextMonthDays.map((day, index) => (
 							<div
 								key={`${nextMonthDate.getMonth}-${index}`}
-								className={`calendar-day grid h-12 w-12 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""} ${startDate && endDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) >= startDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""}`}
+								className={`calendar-day grid xl:h-12 xl:w-12 w-8 h-8 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""} ${startDate && endDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) >= startDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""}`}
 								onClick={() =>
 									handleDateSelect(
 										day,

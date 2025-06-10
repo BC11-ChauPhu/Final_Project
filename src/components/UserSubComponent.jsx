@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LuBadgeCheck } from "react-icons/lu";
 import EditProfile from "./EditProfile";
+import { FaUserCircle } from "react-icons/fa";
 
 const UserSubComponent = ({ userData }) => {
 	const [isEditing, setIsEditing] = useState(false);
@@ -8,16 +9,22 @@ const UserSubComponent = ({ userData }) => {
 		setIsEditing((prev) => !prev);
 	};
 
+	console.log(userData.avatar === true);
+
 	return (
 		<div className="top-50 sticky flex max-h-[442px] flex-col gap-2 rounded-xl border border-gray-300 px-4 py-6 shadow-lg md:w-[40%] lg:w-[30%]">
 			{/* AVAVTAR */}
 			<div className="flex flex-col items-center gap-2">
 				<div className="h-36 w-36 gap-4 rounded-full border border-gray-300">
-					<img
-						className="h-full w-full rounded-full"
-						src={userData.avatar ? userData.avatar : defaultUser}
-						alt="User Avatar"
-					/>
+					{userData.avatar ? (
+						<img
+							className="h-full w-full rounded-full"
+							src={userData.avatar ? userData.avatar : ""}
+							alt="User Avatar"
+						/>
+					) : (
+						<FaUserCircle className="h-36 w-36" />
+					)}
 				</div>
 				<div
 					className="cursor-pointer text-center underline"

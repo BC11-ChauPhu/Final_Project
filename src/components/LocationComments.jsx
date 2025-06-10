@@ -29,7 +29,6 @@ const LocationComments = ({ localeId, reloadComments }) => {
 	}, [localeId]);
 
 	useEffect(() => {
-		/* console.log("This hook was used!"); */
 		fetchData();
 		if (reloadComments) {
 			fetchData();
@@ -72,11 +71,11 @@ const LocationComments = ({ localeId, reloadComments }) => {
 
 	return (
 		<>
-			<div className="pb-6">
+			<div className="pb-6 px-6 ">
 				{comment.length > 0 ? (
 					<>
-						<div className="mt-6 px-6 text-center text-2xl font-semibold xl:w-[1280px] xl:mx-auto relative">
-							<p className="flex items-center gap-1 font-semibold  justify-start">
+						<div className="mt-6  text-center text-2xl font-semibold xl:w-[1280px] xl:mx-auto relative">
+							<p className="flex items-center gap-1 font-semibold xl:px-6 justify-start">
 								<span className="flex gap-1 items-center">
 									<FaStar className="h-4 w-4 text-brand" />{" "}
 									{aRatings.toFixed(1)}
@@ -85,7 +84,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 								<span className="">{reviews} reviews</span>
 							</p>
 						</div>
-						<div className="no-scrollbar mx-auto flex overflow-y-hidden overflow-x-scroll px-6 md:grid md:gap-10 md:text-base lg:w-[1280px] lg:grid-cols-2 md:mt-6">
+						<div className="no-scrollbar mx-auto flex overflow-y-hidden overflow-x-scroll md:grid md:gap-10 md:text-base xl:w-[1280px] lg:grid-cols-2 md:mt-6 w-full xl:px-6">
 							{comment?.slice(0, 6).map((item) => (
 								<div className="mx-2 min-w-64 md:m-0" key={item.id}>
 									<div className="my-6 flex h-60 flex-col justify-between rounded-xl border border-gray-300 p-5 shadow-xl md:m-0 md:h-full md:flex-col-reverse md:gap-2 md:border-transparent md:p-0 md:shadow-none">
@@ -123,7 +122,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 														<img
 															src={item.avatar ? item.avatar : FaUserCircle}
 															alt=""
-															className="object-cover h-12 min-w-12 rounded-full"
+															className="object-cover h-12 w-12 rounded-full"
 														/>
 													) : (
 														<FaUserCircle className="h-12 w-12" />
@@ -142,7 +141,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 							))}
 						</div>
 						{comment?.length > visibleComments && (
-							<div className="xl:w-[1280px] xl:mx-auto px-6 mt-6 font-semibold">
+							<div className="xl:w-[1280px] xl:mx-auto xl:px-6 mt-6 font-semibold">
 								<button
 									type="button"
 									className="px-6 py-3 border border-black rounded-lg hover:bg-gray-100 transition-all duration-300"
@@ -154,7 +153,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 						)}
 						{/* COMMENT MODAl */}
 						<div
-							className={`fixed md:justify-center items-center top-0 left-0 flex h-full w-full ${commentModal ? "open" : "close"} bg-black/50 md:p-10`}
+							className={`fixed flex-none md:justify-center items-center top-0 left-0 flex h-full w-full ${commentModal ? "open" : "close"} bg-black/50 md:p-10`}
 							id="commentModal"
 							onClick={() => closeCommentModal()}
 							onKeyDown={(e) => {
@@ -166,22 +165,22 @@ const LocationComments = ({ localeId, reloadComments }) => {
 								onKeyDown={(e) => {
 									if (e.key === "Enter" || e.key === " ") closeCommentModal();
 								}}
-								className="bg-white h-full gap-0 md:rounded-xl flex flex-col overflow-y-hidden"
+								className="bg-white h-full w-full gap-0 md:rounded-xl flex flex-col overflow-y-hidden"
 							>
 								{/* CLOSE BUTTON */}
 								<button
 									type="button"
-									className="flex closeButton pl-6 md:px-6 lg:px-10 relative hover:cursor-pointer"
+									className="flex closeButton md:pl-6 pl-8 md:px-6 lg:px-10 relative hover:cursor-pointer"
 									onClick={() => setCommentModal(false)}
 								>
-									<div className="absolute left-6 top-4 lg:top-10 lg:left-10">
+									<div className="absolute left-8 md:left-6 top-4 lg:top-10 lg:left-10">
 										<IoMdClose className="h-4 w-4 lg:h-6 lg:w-6" />
 									</div>
 								</button>
 								{/* MODALS CONTENT */}
 								<div className="  md:px-6 lg:px-10 overflow-y-auto">
-									<div className="border border-b-gray-300 border-t-transparent border-l-transparent border-r-transparent md:pb-4">
-										<p className="flex items-center gap-1 font-semibold  justify-start text-2xl pr-8 ">
+									<div className="border border-b-gray-300 border-t-transparent border-l-transparent border-r-transparent pb-4 ">
+										<p className="flex items-center gap-1 font-semibold  justify-start text-2xl pr-8 pl-8 md:pl-0 ">
 											<span className="flex gap-1 items-center">
 												<FaStar className="h-4 w-4 text-brand" />{" "}
 												{aRatings.toFixed(1)}
@@ -191,7 +190,7 @@ const LocationComments = ({ localeId, reloadComments }) => {
 										</p>
 									</div>
 									<div className="lg:pb-8 md:pt-4 overflow-y-hidden flex gap-8 ">
-										<div className=" grid gap-8 rounded-xl pl-6 md:pl-0 pr-6 overflow-y-auto">
+										<div className=" grid gap-8 w-full rounded-xl pl-6 md:pl-0 pr-6 overflow-y-auto">
 											{comment.map((item, index) => (
 												<div className="mx-2 min-w-64 md:m-0" key={item.id}>
 													<div className="my-6 flex h-60 flex-col justify-between rounded-xl border border-gray-300 p-5 shadow-xl md:m-0 md:h-full md:flex-col-reverse md:gap-2 md:border-transparent md:p-0 md:shadow-none">
@@ -226,7 +225,19 @@ const LocationComments = ({ localeId, reloadComments }) => {
 														{/* AVATAR */}
 														<div>
 															<div className="flex items-center gap-4">
-																<div className="h-12 min-w-12 rounded-full border border-gray-500 bg-cover bg-center bg-no-repeat" />
+																<div className="h-12 min-w-12 rounded-full  bg-cover bg-center bg-no-repeat">
+																	{item.avatar ? (
+																		<img
+																			src={
+																				item.avatar ? item.avatar : FaUserCircle
+																			}
+																			alt=""
+																			className="object-cover h-12 max-w-12 rounded-full"
+																		/>
+																	) : (
+																		<FaUserCircle className="h-12 w-12" />
+																	)}
+																</div>
 																<div>
 																	<p className="text-sm font-semibold capitalize">
 																		{item.tenNguoiBinhLuan}

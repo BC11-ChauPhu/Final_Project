@@ -257,7 +257,7 @@ const Header = () => {
 								</div>
 								<div
 									className={`sHeaderItem grid ${activeIndex === 2 ? "active" : ""}`}
-									onClick={() => handleItemClick(2, "/register")}
+									onClick={() => handleItemClick(2, "/sign-in")}
 									onKeyDown={(e) => {
 										if (e.key === "Enter" || e.key === "") {
 											handleItemClick(2, "/");
@@ -267,7 +267,7 @@ const Header = () => {
 									<p className="grid justify-center">
 										<FaRegUserCircle className="text-2xl" />
 									</p>
-									<p className="text-xs">Register</p>
+									<p className="text-xs">Sign in</p>
 								</div>
 							</div>
 						)}
@@ -277,10 +277,11 @@ const Header = () => {
 			{/* ALTERNATIVE HEADER */}
 			{isLocationDetail && (
 				<nav
-					className={`header ${activeHeader && isMediumScreen ? "active" : ""} absolute left-0 z-[1] flex w-full items-center justify-between bg-transparent transition-all duration-500 md:fixed md:bottom-auto md:top-0 md:bg-white xl:px-20`}
+					id="alternativeHeader"
+					className={`header ${activeHeader && isMediumScreen ? "active" : ""} absolute left-0 z-[1] flex  items-center justify-between bg-transparent transition-all duration-500 md:fixed md:bottom-auto md:top-0 md:bg-white w-full`}
 				>
 					{/* MEDIUM ALTERNATIVE HEADER */}
-					<div className="relative m-auto hidden w-full md:block lg:w-[1024px] lg:px-6 xl:w-[1280px]">
+					<div className="relative m-auto hidden w-full px-6  md:block lg:w-[1024px] lg:px-6 xl:w-[1280px]">
 						<div className="flex items-center md:justify-between">
 							{/* LOGO */}
 							<div
@@ -294,9 +295,11 @@ const Header = () => {
 								}}
 							>
 								<FaAirbnb className="mr-1 h-8 w-8" />
-								<span className="text-2xl font-bold">airbnb</span>
+								<span className="hidden lg:inline text-2xl font-bold">
+									airbnb
+								</span>
 							</div>
-							<div className="hidden justify-center gap-4 text-gray-600 md:flex">
+							<div className="hidden justify-center gap-4 text-gray-600 md:flex md:text-sm">
 								<NavLink
 									className="links active transition-all duration-500 hover:text-black"
 									to="/"
@@ -309,6 +312,24 @@ const Header = () => {
 									to="/"
 								>
 									Experiences
+								</NavLink>
+								<NavLink
+									className="transition-all duration-500 hover:text-black"
+									to="/"
+								>
+									Services
+								</NavLink>
+								<NavLink
+									className="transition-all duration-500 hover:text-black"
+									to="/"
+								>
+									Pricing
+								</NavLink>
+								<NavLink
+									className="transition-all duration-500 hover:text-black"
+									to="/"
+								>
+									Contact
 								</NavLink>
 							</div>
 							<div

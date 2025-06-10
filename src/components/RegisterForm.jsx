@@ -61,10 +61,10 @@ const RegisterForm = () => {
 
   return (
     <section className="z-10 flex w-full items-start justify-center transition-all">
-      <div className="max-w-lg rounded-lg bg-white px-14 py-16">
-        <div className="mb-6 flex flex-col justify-between gap-3">
+      <div className="max-w-lg rounded-lg bg-white px-8 md:px-14 py-3 md:py-16">
+        <div className="mb-6 flex flex-col justify-between gap-3 border-b border-b-gray-200 pb-3">
           <h4 className="text-center text-2xl font-semibold">Register</h4>
-          <p className="text-center">
+          <p className="text-center hidden md:block">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
             animi?
           </p>

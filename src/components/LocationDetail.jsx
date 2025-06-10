@@ -123,7 +123,7 @@ const LocationDetail = () => {
 	}, [id]);
 
 	return (
-		<section className="relative  ">
+		<section className="relative lg:mx-auto">
 			{/* IMAGE */}
 			<div className="flex flex-col md:flex-col-reverse md:pb-8 md:pt-14 lg:mx-auto lg:w-[1024px] xl:w-[1280px]">
 				<div className="h-72 md:h-80 md:px-6 lg:h-[489px]">
@@ -484,7 +484,7 @@ const LocationDetail = () => {
 			</div>
 			<div
 				id="calendarModal"
-				className={`fixed top-0 h-dvh items-center overflow-auto bg-black/50 transition-all duration-500 ${isModalOpen ? "open" : "close"}`}
+				className={`fixed w-full top-0 h-dvh items-center overflow-auto bg-black/50 transition-all duration-500 ${isModalOpen ? "open" : "close"}`}
 				onClick={closeModal}
 				onKeyDown={(e) => {
 					if (e.key === "Enter" || e.key === " ") {
@@ -493,6 +493,7 @@ const LocationDetail = () => {
 				}}
 			>
 				<div
+					className="calendarModalContent"
 					onClick={(e) => e.stopPropagation()}
 					onKeyDown={(e) => {
 						if (e.key === "Enter" || e.key === " ") {

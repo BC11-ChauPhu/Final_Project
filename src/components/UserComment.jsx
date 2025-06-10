@@ -10,6 +10,9 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
 	const token = localStorage.getItem("authToken");
 	const currentDate = new Date();
 	const [commentRating, setCommentRating] = useState(0);
+	const totalStars = 5;
+	const [hoverIndex, setHoveredIndex] = useState(null);
+	const [selectedIndex, setSelectedIndex] = useState(null);
 
 	const handleComment = (event) => {
 		event.preventDefault();
@@ -49,14 +52,27 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
 		}
 	};
 
+	const handleMouseEnter = (index) => {
+		setHoveredIndex(index);
+	};
+
+	const handleMouseLeave = () => {
+		setHoveredIndex(null);
+	};
+
+	const handleClick = (index) => {
+		setSelectedIndex(index);
+		setCommentRating(index + 1);
+	};
+
 	return (
 		<div
-			className="py-6 gap-4 px-6 md:px-0 md:grid w-full mx-auto lg:w-[1024px] xl:w-[1240px] border-t border-t-gray-300"
+			className="p-6 gap-4 xl:px-0  md:grid w-full mx-auto lg:w-[1024px] xl:w-[1240px] border-t border-t-gray-300 grid"
 			id="userComment"
 		>
 			{/* AVATAR */}
 			<div className="flex items-center gap-4">
-				<div className="hidden h-12 rounded-full md:block w-12">
+				<div className=" h-12 rounded-full md:block w-12">
 					{userData.avatar ? (
 						<img
 							src={userData.avatar ? userData.avatar : FaUserCircle}
@@ -71,46 +87,27 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
 			</div>
 			<div>
 				<ul id="userRating">
-					<li
-						onClick={() => setCommentRating(1)}
-						onKeyDown={(e) => {
-							if (e.key === "Enter" || e.key === "") setCommentRating(1);
-						}}
-					>
-						<FaStar />
-					</li>
-					<li
-						onClick={() => setCommentRating(2)}
-						onKeyDown={(e) => {
-							if (e.key === "Enter" || e.key === "") setCommentRating(2);
-						}}
-					>
-						<FaStar />
-					</li>
-					<li
-						onClick={() => setCommentRating(3)}
-						onKeyDown={(e) => {
-							if (e.key === "Enter" || e.key === "") setCommentRating(3);
-						}}
-					>
-						<FaStar />
-					</li>
-					<li
-						onClick={() => setCommentRating(4)}
-						onKeyDown={(e) => {
-							if (e.key === "Enter" || e.key === "") setCommentRating(4);
-						}}
-					>
-						<FaStar />
-					</li>
-					<li
-						onClick={() => setCommentRating(5)}
-						onKeyDown={(e) => {
-							if (e.key === "Enter" || e.key === "") setCommentRating(5);
-						}}
-					>
-						<FaStar />
-					</li>
+					{Array.from({ length: totalStars }).map((_, index) => {
+						const isActive =
+							hoverIndex !== null
+								? index <= hoverIndex
+								: selectedIndex !== null && index <= selectedIndex;
+						let i = 0;
+						return (
+							<li
+								key={`${index} + ${i++}`}
+								onMouseEnter={() => handleMouseEnter(index)}
+								onMouseLeave={() => handleMouseLeave(index)}
+								onClick={() => handleClick(index)}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") handleClick(index);
+								}}
+								className={`${isActive ? "active" : " "}`}
+							>
+								<FaStar />
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 
@@ -130,10 +127,10 @@ const UserComment = ({ userData, roomData, onCommentAdded }) => {
 						}}
 					/>
 					<button
-						className="mt-2 rounded-lg bg-blue-500 px-4 py-2 text-white"
+						className="mt-[22px] rounded-lg bg-brand px-4 py-2 text-white font-bold hover:text-brand hover:bg-white transition-all duration-300 hover:border-brand border "
 						type="submit"
 					>
-						Add comment
+						Add Comment
 					</button>
 				</form>
 			</div>
