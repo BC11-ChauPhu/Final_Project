@@ -85,7 +85,8 @@ const SelectedLocation = () => {
 													className={` ${Number.isNaN(Number(id)) ? "h-64" : "h-56 xl:h-80"}`}
 												>
 													<div className="relative h-full">
-														<div
+														<button
+															type="button"
 															className="h-full"
 															onClick={() =>
 																navigate(`/location/detail/${item.id} `)
@@ -113,14 +114,15 @@ const SelectedLocation = () => {
 																	</span>
 																</div>
 															</div>
-														</div>
+														</button>
 													</div>
 												</SwiperSlide>
 												<SwiperSlide
 													className={` ${Number.isNaN(Number(id)) ? "h-64" : "h-56 xl:h-80"}`}
 												>
 													<div className="relative h-full">
-														<div
+														<button
+															type="button"
 															className="h-full"
 															onClick={() =>
 																navigate(`/location/detail/${item.id} `)
@@ -148,14 +150,15 @@ const SelectedLocation = () => {
 																	</span>
 																</div>
 															</div>
-														</div>
+														</button>
 													</div>
 												</SwiperSlide>
 												<SwiperSlide
 													className={` ${Number.isNaN(Number(id)) ? "h-64" : "h-56 xl:h-80"}`}
 												>
 													<div className="relative h-full">
-														<div
+														<button
+															type="button"
 															className="h-full"
 															onClick={() =>
 																navigate(`/location/detail/${item.id} `)
@@ -183,14 +186,15 @@ const SelectedLocation = () => {
 																	</span>
 																</div>
 															</div>
-														</div>
+														</button>
 													</div>
 												</SwiperSlide>
 												<SwiperSlide
 													className={` ${Number.isNaN(Number(id)) ? "h-64" : "h-56 xl:h-80"}`}
 												>
 													<div className="relative h-full">
-														<div
+														<button
+															type="button"
 															className="h-full"
 															onClick={() =>
 																navigate(`/location/detail/${id} `)
@@ -218,14 +222,15 @@ const SelectedLocation = () => {
 																	</span>
 																</div>
 															</div>
-														</div>
+														</button>
 													</div>
 												</SwiperSlide>
 												<SwiperSlide
 													className={` ${Number.isNaN(Number(id)) ? "h-64" : "h-56 xl:h-80"}`}
 												>
 													<div className="relative h-full">
-														<div
+														<button
+															type="button"
 															className="h-full"
 															onClick={() =>
 																navigate(`/location/detail/${id} `)
@@ -253,7 +258,7 @@ const SelectedLocation = () => {
 																	</span>
 																</div>
 															</div>
-														</div>
+														</button>
 													</div>
 												</SwiperSlide>
 											</Swiper>

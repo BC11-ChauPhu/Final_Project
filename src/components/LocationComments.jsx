@@ -152,7 +152,8 @@ const LocationComments = ({ localeId, reloadComments }) => {
 							</div>
 						)}
 						{/* COMMENT MODAl */}
-						<div
+						<button
+							type="button"
 							className={`fixed flex-none md:justify-center items-center top-0 left-0 flex h-full w-full ${commentModal ? "open" : "close"} bg-black/50 md:p-10`}
 							id="commentModal"
 							onClick={() => closeCommentModal()}
@@ -160,7 +161,8 @@ const LocationComments = ({ localeId, reloadComments }) => {
 								if (e.key === "Enter" || e.key === " ") closeCommentModal();
 							}}
 						>
-							<div
+							<button
+								type="button"
 								onClick={(e) => e.stopPropagation()}
 								onKeyDown={(e) => {
 									if (e.key === "Enter" || e.key === " ") closeCommentModal();
@@ -252,8 +254,8 @@ const LocationComments = ({ localeId, reloadComments }) => {
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+							</button>
+						</button>
 					</>
 				) : (
 					<div className="py-6 pt-6 xl:w-[1240px] m-auto ">

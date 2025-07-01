@@ -316,7 +316,8 @@ const LocationDetail = () => {
 						</div>
 						{/* CHECK IN/OUT  */}
 						<div>
-							<div
+							<button
+								type="button"
 								className="flex text-left text-[0.625rem]"
 								onClick={() => setCalendar((prev) => !prev)}
 								onKeyDown={(e) => {
@@ -349,7 +350,7 @@ const LocationDetail = () => {
 										</div>
 									</button>
 								</div>
-							</div>
+							</button>
 							{/* DATE PICKER */}
 							{calendar && (
 								<div className="max-h-[400px] h-[400px] absolute w-[900px] right-4 z-50">
@@ -434,7 +435,8 @@ const LocationDetail = () => {
 												<span className="font-normal"> /night</span>
 											</p>
 										</div>
-										<div
+										<button
+											type="button"
 											onClick={handleDateSelection}
 											onKeyDown={(e) => {
 												if (e.key === "Enter" || e.key === " ")
@@ -444,7 +446,7 @@ const LocationDetail = () => {
 											{dateRange
 												? `${formatDateToMonthDay(dateRange.start)} - ${formatDateToMonthDay(dateRange.end)}`
 												: "Select a date"}
-										</div>
+										</button>
 										<div>
 											<div className="flex items-center gap-1">
 												<CiCircleMinus
@@ -463,7 +465,8 @@ const LocationDetail = () => {
 									</div>
 								</div>
 								<div className="w-1/3">
-									<div
+									<button
+										type="button"
 										className="rounded-lg bg-brand px-4 py-[14px] text-center font-semibold text-white"
 										onClick={() => {
 											handleReserve();
@@ -475,14 +478,15 @@ const LocationDetail = () => {
 										}}
 									>
 										<span>Reserve</span>
-									</div>
+									</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div
+			<button
+				type="button"
 				id="calendarModal"
 				className={`fixed w-full top-0 h-dvh items-center overflow-auto bg-black/50 transition-all duration-500 ${isModalOpen ? "open" : "close"}`}
 				onClick={closeModal}
@@ -492,7 +496,8 @@ const LocationDetail = () => {
 					}
 				}}
 			>
-				<div
+				<button
+					type="button"
 					className="calendarModalContent"
 					onClick={(e) => e.stopPropagation()}
 					onKeyDown={(e) => {
@@ -502,8 +507,8 @@ const LocationDetail = () => {
 					}}
 				>
 					<Calendar />
-				</div>
-			</div>
+				</button>
+			</button>
 		</section>
 	);
 };

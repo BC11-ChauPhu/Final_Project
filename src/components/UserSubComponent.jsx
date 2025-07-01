@@ -26,14 +26,8 @@ const UserSubComponent = ({ userData }) => {
 						<FaUserCircle className="h-36 w-36" />
 					)}
 				</div>
-				<div
-					className="cursor-pointer text-center underline"
-					onClick={() => handleUpdateProfileClick()}
-					onKeyDown={(e) => {
-						if (e.key === "Enter" || e.key === " ") handleUpdateProfileClick();
-					}}
-				>
-					Update your profile
+				<div className="cursor-pointer text-center underline">
+					Change your avatar
 				</div>
 			</div>
 			{/* INFO */}

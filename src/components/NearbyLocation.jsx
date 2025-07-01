@@ -69,7 +69,8 @@ const NearbyLocation = () => {
 								e.target.closest(".locationItem").style.display = "none";
 							};
 							return (
-								<div
+								<button
+									type="button"
 									key={`${item.id}`}
 									className="locationItem flex flex-col"
 									onClick={(e) => {
@@ -125,7 +126,8 @@ const NearbyLocation = () => {
 											</SwiperSlide>
 											<SwiperSlide>
 												<div className="relative h-80 lg:h-64">
-													<div
+													<button
+														type="button"
 														className="h-full"
 														onClick={() => {
 															handleLocationClick(item.tinhThanh, item.id);
@@ -141,7 +143,7 @@ const NearbyLocation = () => {
 															src={item.hinhAnh}
 															alt=""
 														/>
-													</div>
+													</button>
 													<div>
 														<div className="absolute right-3 top-3">
 															<button type="button">
@@ -158,7 +160,8 @@ const NearbyLocation = () => {
 											</SwiperSlide>
 											<SwiperSlide>
 												<div className="relative h-80 lg:h-64">
-													<div
+													<button
+														type="button"
 														className="h-full"
 														onClick={() => {
 															handleLocationClick(item.tinhThanh, item.id);
@@ -174,7 +177,7 @@ const NearbyLocation = () => {
 															src={item.hinhAnh}
 															alt=""
 														/>
-													</div>
+													</button>
 													<div>
 														<div className="absolute right-3 top-3">
 															<button type="button">
@@ -191,7 +194,8 @@ const NearbyLocation = () => {
 											</SwiperSlide>
 											<SwiperSlide>
 												<div className="relative h-80 lg:h-64">
-													<div
+													<button
+														type="button"
 														className="h-full"
 														onClick={() => {
 															handleLocationClick(item.tinhThanh, item.id);
@@ -207,7 +211,7 @@ const NearbyLocation = () => {
 															src={item.hinhAnh}
 															alt=""
 														/>
-													</div>
+													</button>
 													<div>
 														<div className="absolute right-3 top-3">
 															<button type="button">
@@ -224,7 +228,8 @@ const NearbyLocation = () => {
 											</SwiperSlide>
 											<SwiperSlide>
 												<div className="relative h-80 lg:h-64">
-													<div
+													<button
+														type="button"
 														className="h-full"
 														onClick={() => {
 															handleLocationClick(item.tinhThanh, item.id);
@@ -240,7 +245,7 @@ const NearbyLocation = () => {
 															src={item.hinhAnh}
 															alt=""
 														/>
-													</div>
+													</button>
 													<div>
 														<div className="absolute right-3 top-3">
 															<button type="button">
@@ -274,7 +279,7 @@ const NearbyLocation = () => {
 											</span>
 										</div>
 									</div>
-								</div>
+								</button>
 							);
 						})}
 				</div>

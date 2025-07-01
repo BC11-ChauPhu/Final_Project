@@ -9,7 +9,7 @@ const EditProfile = ({ editing, onClick, userData }) => {
   const [startDate, endDate] = dateRange;
 
   return (
-    <div className="fixed left-0 top-0 z-10 h-screen w-screen bg-black/50">
+    <div className="fixed left-0 top-0 z-100 h-screen w-screen bg-black/50">
       {/* CONTENT */}
       <div className="pt-[72px]">
         <div className="relative flex items-center rounded-tl-lg rounded-tr-lg bg-brand px-6 py-2 text-white">

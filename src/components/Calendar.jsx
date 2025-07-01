@@ -135,7 +135,8 @@ const Calendar = () => {
 							</div>
 						))}
 						{currentMonthDays.map((day, index) => (
-							<div
+							<button
+								type="button"
 								key={`${currentDate.getMonth}-${index}`}
 								className={`calendar-day grid xl:h-12 xl:w-12 w-8 h-8 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day || isBeforeTodayInCurrentMonth(day, currentDate.getMonth(), currentDate.getFullYear()) ? "inactive" : ""} ${startDate && endDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) >= startDate && new Date(currentDate.getFullYear(), currentDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""} `}
 								onClick={() =>
@@ -156,7 +157,7 @@ const Calendar = () => {
 								}}
 							>
 								{day}
-							</div>
+							</button>
 						))}
 					</div>
 				</div>
@@ -178,7 +179,8 @@ const Calendar = () => {
 							</div>
 						))}
 						{nextMonthDays.map((day, index) => (
-							<div
+							<button
+								type="button"
 								key={`${nextMonthDate.getMonth}-${index}`}
 								className={`calendar-day grid xl:h-12 xl:w-12 w-8 h-8 items-center rounded-[50%] font-semibold hover:bg-black hover:text-white ${!day ? "inactive" : ""} ${startDate && endDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) >= startDate && new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), day) <= endDate ? "bg-brand text-white" : ""}`}
 								onClick={() =>
@@ -199,7 +201,7 @@ const Calendar = () => {
 								}}
 							>
 								{day}
-							</div>
+							</button>
 						))}
 					</div>
 				</div>

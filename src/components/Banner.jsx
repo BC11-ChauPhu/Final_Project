@@ -149,7 +149,8 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 					<div className="relative max-w-full pb-6 md:mx-auto md:mt-20 md:max-w-7xl">
 						{/* SMALL SEARCHBAR */}
 						{!showPopUpSearch && (
-							<div
+							<button
+								type="button"
 								className="mx-auto h-14 max-w-md rounded-full border border-gray-300 bg-white shadow-xl transition-all duration-500 hover:bg-gray-200 md:hidden"
 								id="smallSearchBar"
 								onClick={() => onClickToggle(true)}
@@ -170,13 +171,14 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 										</span>
 									</div>
 								</div>
-							</div>
+							</button>
 						)}
 						{/* MEDIUM SEARCHBAR */}
 						<div className="relative mx-auto hidden h-[66px] md:block lg:w-[70%]">
 							{/* SEARCH FORM */}
 							<div className="dropshadow-xl relative flex rounded-full border border-gray-300 shadow-lg">
-								<div
+								<button
+									type="button"
 									className="w-1/3"
 									onClick={() => handleOnClickLocationSearch()}
 									onKeyDown={(e) => {
@@ -204,11 +206,12 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 											</div>
 										</label>
 									</div>
-								</div>
+								</button>
 								<div className="flex items-center bg-white">
 									<div className="h-8 border-r border-r-gray-300" />
 								</div>
-								<div
+								<button
+									type="button"
 									className="flex w-1/3"
 									onClick={() => {
 										setCalendar((prev) => !prev);
@@ -228,13 +231,14 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 											</div>
 										</div>
 									</div>
-								</div>
+								</button>
 								<div className="flex items-center bg-white">
 									<div className="h-8 border-r border-r-gray-300" />
 								</div>
 								<div className="flex w-1/3 items-center justify-between rounded-full rounded-br-full rounded-tr-full bg-white hover:bg-gray-200">
 									<div>
-										<div
+										<button
+											type="button"
 											className="w-full"
 											onClick={() => handleShowGuestSelector()}
 											onKeyDown={(e) => {
@@ -248,10 +252,11 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 													Add guests
 												</div>
 											</div>
-										</div>
+										</button>
 									</div>
 									<div className="pr-2">
-										<div
+										<button
+											type="button"
 											onClick={() => navigateAfterSearch()}
 											onKeyDown={(e) => {
 												if (e.key === "Enter" || e.key === " ")
@@ -266,7 +271,7 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 													<FaMagnifyingGlass className="block h-4 w-4 stroke-[4px]" />
 												</div>
 											</button>
-										</div>
+										</button>
 									</div>
 								</div>
 								{guestSelector && <GuestSelector />}
@@ -301,7 +306,8 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 					)}
 					{/* SEARCH FORM */}
 					{!calendar && (
-						<div
+						<button
+							type="button"
 							className={`smallLocationSearch mx-4 rounded-3xl border border-gray-300 p-6 shadow-lg ${animated ? "animate" : ""}`}
 							onClick={handleOnClickTransform}
 							onKeyDown={(e) => {
@@ -345,11 +351,12 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 									/>
 								)}
 							</div>
-						</div>
+						</button>
 					)}
 					{/* SEARCH DATE */}
 					{!animated && (
-						<div
+						<button
+							type="button"
 							className="mx-4 mt-4 rounded-2xl border border-gray-300 p-4 shadow-lg"
 							onClick={() => handleShowCalendar()}
 							onKeyDown={(e) => {
@@ -364,12 +371,13 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 										: "Add dates"}
 								</span>
 							</div>
-						</div>
+						</button>
 					)}
 					{calendar && <Calendar />}
 					{/* ADD GUESTS */}
 					{!animated && (
-						<div
+						<button
+							type="button"
 							className="mx-4 mt-4 rounded-2xl border border-gray-300 p-4 shadow-lg"
 							onClick={() => handleShowGuestSelector()}
 							onKeyDown={(e) => {
@@ -381,7 +389,7 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 								<span className="text-sm font-bold text-gray-500">Who?</span>
 								<span className="text-sm font-semibold">{`${guests <= 0 ? "Add guests" : `${guests} guests`}`}</span>
 							</div>
-						</div>
+						</button>
 					)}
 					{guestSelector && <GuestSelector />}
 					{/* SEARCH BUTTON */}

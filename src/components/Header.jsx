@@ -27,6 +27,8 @@ const Header = () => {
 	const activeIndex = useSelector(
 		(state) => state.smallHeaderAcitve.activeIndex,
 	);
+	const userData = JSON.parse(localStorage.getItem("user"));
+	const userPath = `profile/user/${userData.id}`;
 
 	const handleItemClick = (index, path) => {
 		dispatch(setActiveIndex(index));
@@ -42,7 +44,6 @@ const Header = () => {
 	};
 
 	const goToUser = () => {
-		const userData = JSON.parse(localStorage.getItem("user"));
 		if (userData) {
 			navigate(`/profile/user/${userData.id}`);
 		} else {
@@ -99,7 +100,8 @@ const Header = () => {
 						{/* MEDIUM HEADER */}
 						<div className="flex items-center md:justify-between">
 							{/* LOGO */}
-							<div
+							<button
+								type="button"
 								id="headerLogo"
 								className="hidden cursor-pointer items-center py-2 text-3xl text-brand lg:flex md:inline"
 								onClick={() => navigate("/")}
@@ -111,7 +113,7 @@ const Header = () => {
 								<span className="hidden lg:inline text-2xl font-bold">
 									airbnb
 								</span>
-							</div>
+							</button>
 							<div className="hidden justify-center gap-8 text-gray-600 md:flex lg:text-lg md:text-sm">
 								<NavLink
 									className="links active transition-all duration-500 hover:text-black"
@@ -222,12 +224,14 @@ const Header = () => {
 						</div>
 						{/* SMALL HEADER */}
 						{!isLocationDetail && (
-							<div
+							<button
+								type="button"
 								className={
 									"flex items-center justify-center gap-11 text-gray-400 md:hidden"
 								}
 							>
-								<div
+								<button
+									type="button"
 									className={`sHeaderItem grid ${activeIndex === 0 ? "active" : ""}`}
 									onClick={() => handleItemClick(0, "/")}
 									onKeyDown={(e) => {
@@ -240,8 +244,9 @@ const Header = () => {
 										<FaMagnifyingGlass className="text-2xl" />
 									</p>
 									<p className="text-xs">Explore</p>
-								</div>
-								<div
+								</button>
+								<button
+									type="button"
 									className={`sHeaderItem grid ${activeIndex === 1 ? "active" : ""}`}
 									onClick={() => handleItemClick(1, "/")}
 									onKeyDown={(e) => {
@@ -254,10 +259,16 @@ const Header = () => {
 										<FaRegHeart />
 									</p>
 									<p className="text-xs">Wishlist</p>
-								</div>
-								<div
+								</button>
+								<button
+									type="button"
 									className={`sHeaderItem grid ${activeIndex === 2 ? "active" : ""}`}
-									onClick={() => handleItemClick(2, "/sign-in")}
+									onClick={() =>
+										handleItemClick(
+											2,
+											`${isAuthenciated ? `${userPath}` : "sign-in"}`,
+										)
+									}
 									onKeyDown={(e) => {
 										if (e.key === "Enter" || e.key === "") {
 											handleItemClick(2, "/");
@@ -267,9 +278,18 @@ const Header = () => {
 									<p className="grid justify-center">
 										<FaRegUserCircle className="text-2xl" />
 									</p>
-									<p className="text-xs">Sign in</p>
-								</div>
-							</div>
+									<p
+										className={` ${isAuthenciated ? "hidden" : "block"} text-xs`}
+									>
+										Sign in
+									</p>
+									<p
+										className={` ${isAuthenciated ? "block" : "hidden"} text-xs`}
+									>
+										Profile
+									</p>
+								</button>
+							</button>
 						)}
 					</div>
 				</nav>
@@ -284,7 +304,8 @@ const Header = () => {
 					<div className="relative m-auto hidden w-full px-6  md:block lg:w-[1024px] lg:px-6 xl:w-[1280px]">
 						<div className="flex items-center md:justify-between">
 							{/* LOGO */}
-							<div
+							<button
+								type="button"
 								id="headerLogo"
 								className="hidden cursor-pointer items-center py-2 text-3xl text-brand md:flex"
 								onClick={() => navigate("/")}
@@ -298,7 +319,7 @@ const Header = () => {
 								<span className="hidden lg:inline text-2xl font-bold">
 									airbnb
 								</span>
-							</div>
+							</button>
 							<div className="hidden justify-center gap-4 text-gray-600 md:flex md:text-sm">
 								<NavLink
 									className="links active transition-all duration-500 hover:text-black"
@@ -394,13 +415,14 @@ const Header = () => {
 					<div className="w-full p-4 md:hidden">
 						<div className="flex justify-between md:hidden">
 							{/* LEFT */}
-							<div
+							<button
+								type="button"
 								className="flex h-9 w-9 items-center justify-center rounded-full border bg-white font-bold text-black drop-shadow-xl"
 								onClick={() => navigate(-1)}
 								onKeyDown={() => navigate(-1)}
 							>
 								<FaChevronLeft />
-							</div>
+							</button>
 							{/* RIGHT */}
 							<div className="flex gap-3">
 								<div className="flex h-9 w-9 items-center justify-center rounded-full border bg-white drop-shadow-xl">
