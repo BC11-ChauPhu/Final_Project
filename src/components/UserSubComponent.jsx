@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { LuBadgeCheck } from "react-icons/lu";
-import EditProfile from "./EditProfile";
 import { FaUserCircle } from "react-icons/fa";
 
 const UserSubComponent = ({ userData }) => {
-	const [isEditing, setIsEditing] = useState(false);
-	const handleUpdateProfileClick = () => {
-		setIsEditing((prev) => !prev);
-	};
-
 	console.log(userData.avatar === true);
 
 	return (
@@ -48,14 +42,6 @@ const UserSubComponent = ({ userData }) => {
 					</div>
 				</div>
 			</div>
-			{/* EDIT PROFILE */}
-			{isEditing && (
-				<EditProfile
-					editing={isEditing}
-					onClick={handleUpdateProfileClick}
-					userData={userData}
-				/>
-			)}
 		</div>
 	);
 };

@@ -114,7 +114,9 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 				dispatch(setCoords([lat, lng]));
 				return { latitude: lat, longtitude: lng };
 			}
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const handleAfterGetSearchValue = useCallback(
@@ -146,12 +148,12 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 					id="banner"
 					className="block p-6 pb-0 pt-3 border border-b-gray-200"
 				>
-					<div className="relative max-w-full pb-6 md:mx-auto md:mt-20 md:max-w-7xl">
+					<div className="relative max-w-full pb-6 md:mx-auto md:mt-20 md:max-w-7xl ">
 						{/* SMALL SEARCHBAR */}
 						{!showPopUpSearch && (
 							<button
 								type="button"
-								className="mx-auto h-14 max-w-md rounded-full border border-gray-300 bg-white shadow-xl transition-all duration-500 hover:bg-gray-200 md:hidden"
+								className="mx-auto h-14 max-w-md rounded-full border border-gray-300 bg-white shadow-xl transition-all duration-500 hover:bg-gray-200 md:hidden w-full"
 								id="smallSearchBar"
 								onClick={() => onClickToggle(true)}
 								onKeyDown={(e) => {
@@ -159,12 +161,12 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 								}}
 							>
 								<div className="grid h-full">
-									<div className="grid grid-cols-6 items-center">
-										<span>
+									<div className="grid grid-cols-8 grid-flow-col md:grid-cols-6 items-center">
+										<span className="col-span-1">
 											<FaMagnifyingGlass className="mx-auto text-xl" />
 										</span>
-										<span className="col-span-5 grid items-center">
-											<div className="text-sm font-semibold">Where to?</div>
+										<span className="col-span-7 grid justify-start text-left">
+											<div className="text-sm  font-semibold">Where to?</div>
 											<div className="text-[12px] text-gray-500">
 												<span>Anywhere • Any week • Add guests</span>
 											</div>
@@ -221,8 +223,8 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 											setCalendar((prev) => !prev);
 									}}
 								>
-									<div className="flex h-full w-full">
-										<div className="w-full rounded-full bg-white px-6 py-4 transition-all duration-500 hover:bg-gray-200">
+									<div className="flex h-full w-full justify-start">
+										<div className="w-full rounded-full bg-white px-6 py-4 transition-all duration-500 hover:bg-gray-200 text-left">
 											<div className="text-xs font-semibold">Check in</div>
 											<div
 												className={`${dateRange ? "text-black" : "text-gray-400"} text-sm`}
@@ -235,7 +237,7 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 								<div className="flex items-center bg-white">
 									<div className="h-8 border-r border-r-gray-300" />
 								</div>
-								<div className="flex w-1/3 items-center justify-between rounded-full rounded-br-full rounded-tr-full bg-white hover:bg-gray-200">
+								<div className="flex w-1/3 items-center justify-between rounded-full rounded-br-full rounded-tr-full bg-white hover:bg-gray-200 text-left">
 									<div>
 										<button
 											type="button"
@@ -247,7 +249,9 @@ const Banner = ({ onClickToggle, showPopUpSearch }) => {
 											}}
 										>
 											<div className="px-6 py-4">
-												<div className="w-full text-xs font-semibold">Who</div>
+												<div className="w-full text-xs font-semibold text-left">
+													Who
+												</div>
 												<div className="w-full text-sm text-gray-400">
 													Add guests
 												</div>

@@ -224,10 +224,9 @@ const Header = () => {
 						</div>
 						{/* SMALL HEADER */}
 						{!isLocationDetail && (
-							<button
-								type="button"
+							<div
 								className={
-									"flex items-center justify-center gap-11 text-gray-400 md:hidden"
+									"flex items-center justify-center gap-11 text-gray-400 md:hidden w-full"
 								}
 							>
 								<button
@@ -289,7 +288,7 @@ const Header = () => {
 										Profile
 									</p>
 								</button>
-							</button>
+							</div>
 						)}
 					</div>
 				</nav>
